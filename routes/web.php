@@ -25,3 +25,6 @@ Route::get('maqueta/login/recuperar', function () {
 Route::get('maqueta/login/nueva', function () {
      return view('maqueta.login.nueva');
 });
+Route::get('maqueta/login/envio', function () {
+     return view('maqueta.login.envio');
+});

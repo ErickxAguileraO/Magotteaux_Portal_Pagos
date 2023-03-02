@@ -8,11 +8,21 @@
 <title>Plataforma Magotteaux</title>
 <!-- CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,600;0,900;1,400;1,900&display=swap" rel="stylesheet">
-<link href="{{ asset('public/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{asset('public/css/login.css')}}" rel="stylesheet" type="text/css">
 <!-- JS -->
 <script src="{{asset('public/js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('public/js/jquery/bootstrap/bootstrap.min.js')}}"></script>
+<script>
+  function mostrarContrasena() {
+	 var tipo = document.getElementById("password");
+	 if (tipo.type == "password") {
+		tipo.type = "text";
+		document.getElementById("mostrar-pass").innerHTML = 'Ocultar'
+	 } else {
+		tipo.type = "password";
+		document.getElementById("mostrar-pass").innerHTML = 'Mostrar'
+	 }
+  }
+</script>
 <!-- favicon -->
 <link href="{{asset('public/favicon.ico')}}" rel="shortcut icon" />
 </head>
@@ -22,7 +32,7 @@
     <div class="row">
       <div class="col-sm">
         <div id="login">
-          <form action="#" class="form-horizontal sesion" id="form-login" method="POST" role="form">
+          <form action="#" class="form-horizontal" id="form-login" method="POST" role="form">
             <fieldset>
               <legend style="margin-bottom: 14px;">Nueva contraseña</legend>
               <p class="text-center">Cree una nueva contraseña.<br>
@@ -30,11 +40,13 @@
               <div class="form-group">
                 <label for="password_1">Nueva contraseña</label>
                 <input type="password" name="password_1" id="password_1" placeholder="********" tabindex="1" class="form-control" />
+                <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                 <div class="p_errores"> Contraseña de usuario incorrecto </div>
               </div>
               <div class="form-group">
                 <label for="password_2">Confirmar contraseña</label>
                 <input type="password" name="password_2" id="password_2" placeholder="********" tabindex="2" class="form-control" />
+                <p id="mostrar-pass2" onclick="mostrarContrasena()">Mostrar</p>
                 <div class="p_errores"> Contraseña de usuario incorrecto </div>
               </div>
               <div class="text-center" style="padding-top: 10px;">

@@ -8,11 +8,9 @@
    <title>Plataforma Magotteaux</title>
    <!-- CSS -->
    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <link href="{{ asset('public/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
    <link href="{{asset('public/css/login.css')}}" rel="stylesheet" type="text/css">
    <!-- JS -->
    <script src="{{asset('public/js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
-   <script src="{{asset('public/js/jquery/bootstrap/bootstrap.min.js')}}"></script>
    <script>
       function mostrarContrasena() {
          var tipo = document.getElementById("password");
@@ -35,7 +33,7 @@
          <div class="col-sm">
            <div id="login">
              <figure class="text-center" id="logo-resp"> <img src="/public/imagenes/template/logo.png" width="348" height="63" alt="Magotteaux"> </figure>
-             <form action="#" class="form-horizontal sesion" id="form-login" method="POST" role="form">
+             <form action="#" class="form-horizontal" id="form-login" method="POST" role="form">
                <fieldset>
                  <legend><small>¡Hola! Te damos la bienvenida a</small><br>
                  Portal de pago</legend>
