@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('maqueta/login/', function () {
+     return view('maqueta.login.index');
+});
+Route::get('maqueta/login/recuperar', function () {
+     return view('maqueta.login.recuperar');
+});
+Route::get('maqueta/login/nueva', function () {
+     return view('maqueta.login.nueva');
+});
