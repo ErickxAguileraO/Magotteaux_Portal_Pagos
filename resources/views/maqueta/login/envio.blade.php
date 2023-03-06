@@ -7,7 +7,7 @@
 <meta name="author" content="Aeurus Ltda.">
 <title>Plataforma Magotteaux</title>
 <!-- CSS -->
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,600;0,900;1,400;1,900&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="{{ asset('public/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 <link href="{{asset('public/css/login.css')}}" rel="stylesheet" type="text/css">
 <!-- JS -->
