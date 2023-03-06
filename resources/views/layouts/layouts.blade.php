@@ -9,17 +9,17 @@
 
 <!-- CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="{{ asset('public/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{asset('public/js/jquery/bootstrap/css/bootstrap.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/css/hoja-estilos.css')}}">
+<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{asset('js/jquery/bootstrap/css/bootstrap.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/hoja-estilos.css')}}">
 <!-- END: Custom CSS-->
 <!-- JS -->
-<script src="{{asset('public/js/jquery/bootstrap/bootstrap.js')}}"></script>
-<script src="{{asset('public/js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('public/js/jquery/bootstrap/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('js/jquery/bootstrap/bootstrap.js')}}"></script>
+<script src="{{asset('js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('js/jquery/bootstrap/bootstrap.bundle.min.js')}}"></script>
 @yield('js_personalizado')
 <!-- favicon -->
-<link href="{{ asset('public/favicon.ico') }}" rel="shortcut icon" />
+<link href="{{ asset('favicon.ico') }}" rel="shortcut icon" />
 </head>
 <!-- END: Head-->
 
@@ -28,15 +28,15 @@
 <header class="p-4 bg-dark border-bottom">
   <div class="container-fluid">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <figure class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"> <img src="{{asset('public/imagenes/template/logo-white.svg')}}" width="265" height="50" /> </figure>
+      <figure class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"> <img src="{{asset('imagenes/template/logo-white.svg')}}" width="265" height="50" /> </figure>
       <ul class="nav col-12 col-lg-auto ms-lg-5 me-lg-auto mb-2 justify-content-center mb-md-0">
         <li class="text-white">Plataforma<br>
           <span class="h5">Página actual</span></li>
       </ul>
       <div class="dropdown text-end"> <a href="#" class="d-block nav-link text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> dgijon@aeurus.cl </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#"><img src="{{asset('public/imagenes/sitio/pagos.png')}}" width="16" height="16" alt="Consulta de pagos" /> Consulta visualización de pagos</a></li>
-          <li><a class="dropdown-item" href="#"><img src="{{asset('public/imagenes/sitio/cerrar-sesion.png')}}" width="17" height="16" alt="Cerrar sesión" /> Cerrar sesión</a></li>
+          <li><a class="dropdown-item" href="#"><img src="{{asset('imagenes/sitio/pagos.png')}}" width="16" height="16" alt="Consulta de pagos" /> Consulta visualización de pagos</a></li>
+          <li><a class="dropdown-item" href="#"><img src="{{asset('imagenes/sitio/cerrar-sesion.png')}}" width="17" height="16" alt="Cerrar sesión" /> Cerrar sesión</a></li>
         </ul>
       </div>
     </div>
