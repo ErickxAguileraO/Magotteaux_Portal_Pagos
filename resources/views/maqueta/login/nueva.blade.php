@@ -8,9 +8,9 @@
 <title>Plataforma Magotteaux</title>
 <!-- CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="{{asset('public/css/login.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/login.css')}}" rel="stylesheet" type="text/css">
 <!-- JS -->
-<script src="{{asset('public/js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('js/jquery/3.6.0/jquery-3.6.0.min.js')}}"></script>
 <script>
   function mostrarContrasena() {
 	 var tipo = document.getElementById("password");
@@ -24,7 +24,7 @@
   }
 </script>
 <!-- favicon -->
-<link href="{{asset('public/favicon.ico')}}" rel="shortcut icon" />
+<link href="{{asset('favicon.ico')}}" rel="shortcut icon" />
 </head>
 <body>
 <div id="wrapper">

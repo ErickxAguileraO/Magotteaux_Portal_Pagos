@@ -1,8 +1,8 @@
 @extends('layouts.layouts')
 @section('title', 'Carga masiva de información') 
 @section('js_personalizado') 
-<script src="{{ asset('public/js/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script> 
-<script src="{{ asset('public/js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script> 
+<script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script> 
+<script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script> 
 @endsection
 @section('content')
 <div class="card mb-4">
