@@ -20,13 +20,14 @@
             </select>
           </div>
           <div class="col-sm-6 col-md-3 bt">
-            <button class="btn btn-success text-nowrap" style="width: 100%;">Subir archivo masivo <img src="/public/imagenes/sitio/import.png" width="14" height="16" alt="subir" /></button>
+            <button class="btn btn-success text-nowrap" style="width: 100%;"  data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Subir archivo masivo <img src="/public/imagenes/sitio/import.png" width="14" height="16" alt="subir" /></button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="card-body">
+  
+  <div class="card-body collapse"  id="collapseExample">
     <div class=" ">
       <h2 class="h1">Subir archivo</h2>
       <div class="tex-center" >
