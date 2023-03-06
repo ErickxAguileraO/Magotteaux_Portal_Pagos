@@ -7,7 +7,6 @@
 @section('content')
 <div class="card mb-4">
   <div class="card-body">
-  
     <div class="row">
       <div class="mb-3 mb-lg-0 col-lg-6 align-self-center">
         <h1 class="mb-0">Carga masiva de información</h1>
