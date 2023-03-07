@@ -74,3 +74,6 @@
       </div>
    </div>
 @endsection
+@section('js_personalizado')
+
+@endsection
