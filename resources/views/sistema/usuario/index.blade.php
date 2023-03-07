@@ -20,7 +20,7 @@
                      <h1 class="mb-0">Mantenedor de usuarios</h1>
                   </div>
                   <div class="col-sm-5 text-end">
-                     <div class="pl" style="display:inline-block;"> <a class="btn btn-success text-nowrap" style="width: 100%;" href="/maqueta/usuario/crear/">Crear nuevo usuario <i class="fa-light fa-circle-plus fa-fw"></i></a> </div>
+                     <div class="pl" style="display:inline-block;"> <a class="btn btn-success text-nowrap" style="width: 100%;" href="{{ route('usuario.create') }}">Crear nuevo usuario <i class="fa-light fa-circle-plus fa-fw"></i></a> </div>
                   </div>
                </div>
             </div>

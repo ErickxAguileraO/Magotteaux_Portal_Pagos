@@ -14,11 +14,7 @@
    <link rel="stylesheet" type="text/css" href="{{ asset('js/jquery/bootstrap/css/bootstrap.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/hoja-estilos.css') }}">
    <!-- END: Custom CSS-->
-   <!-- JS -->
-   <script src="{{ asset('js/jquery/bootstrap/bootstrap.js') }}"></script>
-   <script src="{{ asset('js/jquery/3.6.0/jquery-3.6.0.min.js') }}"></script>
-   <script src="{{ asset('js/jquery/bootstrap/bootstrap.bundle.min.js') }}"></script>
-   @yield('js_personalizado')
+   <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/css/sweetalert2.min.css') }}">
    <!-- favicon -->
    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" />
 </head>
@@ -62,8 +58,18 @@
          <!-- Dashboard Ecommerce ends -->
       </div>
    </div>
+   @include('imports.notifications')
+
+   <!-- JS -->
+   <script src="{{ asset('js/jquery/bootstrap/bootstrap.js') }}"></script>
+   <script src="{{ asset('js/jquery/3.6.0/jquery-3.6.0.min.js') }}"></script>
+   <script src="{{ asset('js/jquery/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
+   <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.min.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script>
+   <script src="{{ asset('js/web.js') }}"></script>
+   @yield('js_personalizado')
 </body>
 <!-- END: Body-->
 

@@ -1,18 +1,18 @@
 @extends('layouts.sistema')
-@section('title', 'Crear usuarios')
+@section('title', 'Editar usuarios')
 @section('content')
    <div class="card mb-4">
       <div class="card-body">
-         <form method="POST" action="{{ route('usuario.store') }}" class="formulario-crear-cliente">
+         <form method="POST" action="{{ route('usuario.update') }}" class="formulario-crear-cliente">
             <div class="mb-4">
-               <h1 class="mb-0">Nuevo usuario</h1>
+               <h1 class="mb-0">Editar usuario</h1>
             </div>
             <div class="list-group mb-4">
                <div class="list-group-item">
                   <div class="row">
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="nombre" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" />
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre', $usuario->usu_nombre) }}" />
                         @error('nombre')
                            <span class="invalid-feedback badge alert-danger" role="alert">
                               <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                      </div>
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido', $usuario->usu_apellido) }}">
                         @error('apellido')
                            <span class="invalid-feedback badge alert-danger" role="alert">
                               <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
                      </div>
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="celular" class="form-label">Celular</label>
-                        <input type="text" class="form-control" id="celular" name="celular" value="{{ old('celular') }}">
+                        <input type="text" class="form-control" id="celular" name="celular" value="{{ old('celular', $usuario->usu_celular) }}">
                         @error('celular')
                            <span class="invalid-feedback badge alert-danger" role="alert">
                               <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                      </div>
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email', $usuario->usu_email) }}">
                         @error('email')
                            <span class="invalid-feedback badge alert-danger" role="alert">
                               <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
                      </div>
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="identificacion" class="form-label">Identificación</label>
-                        <input type="text" class="form-control" id="identificacion" name="identificacion" value="{{ old('identificacion') }}">
+                        <input type="text" class="form-control" id="identificacion" name="identificacion" value="{{ old('identificacion', $usuario->usu_identificacion) }}">
                         @error('identificacion')
                            <span class="invalid-feedback badge alert-danger" role="alert">
                               <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
                            <option value="">Seleccione</option>
                            @foreach ($roles as $rol)
                               @php
-                                 $selected = old('tipo') == $rol->id ? 'selected' : '';
+                                 $selected = old('tipo', $usuario->getRoleId()) == $rol->id ? 'selected' : '';
                               @endphp
                               <option value="{{ $rol->id }}" {{ $selected }}>{{ $rol->name }}</option>
                            @endforeach
@@ -82,7 +82,7 @@
                         @enderror
                      </div>
                      @php
-                        $class = old('tipo') == 1 ? '' : 'd-none';
+                        $class = old('tipo', $usuario->getRoleId()) == 1 ? '' : 'd-none';
                      @endphp
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-planta">
                         <label for="planta" class="form-label">Planta</label>
@@ -90,7 +90,7 @@
                            <option value="">Seleccione</option>
                            @foreach ($plantas as $planta)
                               @php
-                                 $selected = old('planta') == $planta->pla_id ? 'selected' : '';
+                                 $selected = old('planta', $usuario->usu_planta_id) == $planta->pla_id ? 'selected' : '';
                               @endphp
                               <option value="{{ $planta->pla_id }}" {{ $selected }}>{{ $planta->pla_nombre }}</option>
                            @endforeach
@@ -102,7 +102,7 @@
                         @enderror
                      </div>
                      @php
-                        $class = old('tipo') == 3 ? '' : 'd-none';
+                        $class = old('tipo', $usuario->getRoleId()) == 3 ? '' : 'd-none';
                      @endphp
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-proveedor">
                         <label for="proveedor" class="form-label">Proveedor</label>
@@ -110,7 +110,7 @@
                            <option value="">Seleccione</option>
                            @foreach ($proveedores as $proveedor)
                               @php
-                                 $selected = old('proveedor') == $proveedor->pro_id ? 'selected' : '';
+                                 $selected = old('proveedor', $usuario->usu_proveedor_id) == $proveedor->pro_id ? 'selected' : '';
                               @endphp
                               <option value="{{ $proveedor->pro_id }}" {{ $selected }}>{{ $proveedor->pro_razon_social }}</option>
                            @endforeach
@@ -125,8 +125,8 @@
                         <label for="estado" class="form-label">Estado</label>
                         <select id="estado" name="estado" class="form-select" style="width:100%;">
                            <option value="">Seleccione</option>
-                           <option value="1" {{ old('estado') == '1' ? 'selected' : '' }}>Activo</option>
-                           <option value="0" {{ old('estado') == '0' ? 'selected' : '' }}>Inactivo</option>
+                           <option value="1" {{ old('estado', $usuario->usu_estado) == '1' ? 'selected' : '' }}>Activo</option>
+                           <option value="0" {{ old('estado', $usuario->usu_estado) == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
                         @error('estado')
                            <span class="invalid-feedback badge alert-danger" role="alert">
