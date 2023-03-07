@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 /***** MAQUETA *****/
 Route::get('/', function () {
-    return view('welcome');
+     return view('welcome');
 });
 Route::get('maqueta/login/', function () {
      return view('maqueta.login.index');
@@ -58,4 +58,35 @@ Route::get('maqueta/proveedor/', function () {
 });
 Route::get('maqueta/proveedor/crear', function () {
      return view('maqueta.proveedor.crear');
+});
+
+
+Route::group(['as' => 'web.'], function () {
+     Route::middleware(['guest'])->group(function () {
+          // Route::get('', [AuthController::class, 'login'])->name('index');
+          // Route::get('login', [AuthController::class, 'login'])->name('login');
+     //      Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+     //      Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
+     //      Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
+     });
+
+     // Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth'])->group(function () {
+     // Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {
+     //      Route::get('edit', [CuentaController::class, 'edit'])->name('edit');
+     //      Route::put('update', [CuentaController::class, 'update'])->name('update');
+     // });
+
+     // Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
+     //      Route::get('', [ProveedorController::class, 'index'])->name('index');
+     //      Route::get('list', [ProveedorController::class, 'list'])->name('list');
+     //      Route::get('nuevo-proveedor', [ProveedorController::class, 'create'])->name('create');
+     //      Route::post('store', [ProveedorController::class, 'store'])->name('store');
+     //      Route::get('editar-proveedor/{id}', [ProveedorController::class, 'edit'])->name('edit');
+     //      Route::post('update/{id}', [ProveedorController::class, 'update'])->name('update');
+     //      Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
+     //      Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
+     // });
 });
