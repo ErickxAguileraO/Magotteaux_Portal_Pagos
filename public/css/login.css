@@ -325,22 +325,25 @@ p {
 *****************************************************/
 
 .alert-danger {
+	font-size:16px;
     display: block;
-    background: rgba(234, 84, 85, 0.12) !important;
-    color: #ea5455 !important;
+    background: rgba(234, 84, 85, 0.12);
+    color: #ea5455;
     border-radius: 5px;
     text-align: center;
+	margin-top: 6px;
+	padding:1px 10px;
 }
 
-.invalid-feedback {
+/*.invalid-feedback {
     margin-top: 0.25rem;
     font-size: 0.857rem;
     color: #ea5455;
-}
+}*/
 
-.invalid-feedback span{
+/*.invalid-feedback span{
     color: #dc3545;
-}
+}*/
 
 .pointer-event-none{
     pointer-events: none;
