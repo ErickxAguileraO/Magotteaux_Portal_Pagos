@@ -3,7 +3,7 @@
 @section('content')
    <div class="card mb-4">
       <div class="card-body">
-         <form method="POST" action="{{ route('usuario.update') }}" class="formulario-crear-cliente">
+         <form method="POST" action="{{ route('usuario.update', ['id' => $usuario->usu_id]) }}" class="formulario-crear-cliente">
             <div class="mb-4">
                <h1 class="mb-0">Editar usuario</h1>
             </div>
@@ -67,7 +67,6 @@
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="tipo" class="form-label">Tipo de usuario</label>
                         <select id="tipo" name="tipo" class="form-select" style="width:100%;">
-                           <option value="">Seleccione</option>
                            @foreach ($roles as $rol)
                               @php
                                  $selected = old('tipo', $usuario->getRoleId()) == $rol->id ? 'selected' : '';
@@ -87,7 +86,6 @@
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-planta">
                         <label for="planta" class="form-label">Planta</label>
                         <select id="planta" name="planta" class="form-select" style="width:100%;">
-                           <option value="">Seleccione</option>
                            @foreach ($plantas as $planta)
                               @php
                                  $selected = old('planta', $usuario->usu_planta_id) == $planta->pla_id ? 'selected' : '';
@@ -107,7 +105,6 @@
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-proveedor">
                         <label for="proveedor" class="form-label">Proveedor</label>
                         <select id="proveedor" name="proveedor" class="form-select" style="width:100%;">
-                           <option value="">Seleccione</option>
                            @foreach ($proveedores as $proveedor)
                               @php
                                  $selected = old('proveedor', $usuario->usu_proveedor_id) == $proveedor->pro_id ? 'selected' : '';
@@ -124,7 +121,6 @@
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="estado" class="form-label">Estado</label>
                         <select id="estado" name="estado" class="form-select" style="width:100%;">
-                           <option value="">Seleccione</option>
                            <option value="1" {{ old('estado', $usuario->usu_estado) == '1' ? 'selected' : '' }}>Activo</option>
                            <option value="0" {{ old('estado', $usuario->usu_estado) == '0' ? 'selected' : '' }}>Inactivo</option>
                         </select>
