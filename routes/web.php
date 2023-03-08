@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,8 +67,8 @@ Route::group(['as' => 'web.'], function () {
           // Route::get('', [AuthController::class, 'login'])->name('index');
           // Route::get('login', [AuthController::class, 'login'])->name('login');
      //      Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
-     //      Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
-     //      Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
+          Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
+          Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
      });
 
      // Route::get('logout', [AuthController::class, 'logout'])->name('logout');
