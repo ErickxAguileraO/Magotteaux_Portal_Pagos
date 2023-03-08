@@ -31,15 +31,23 @@
           </div>
           <div class="mb-3 col-sm-6 col-md-4">
             <label for="pro_email1" class="form-label">Email 1</label>
-            <input type="text" class="form-control" id="pro_email1" name="pro_email1">
+            <input tabindex="4" type="text" class="form-control" id="pro_email1" name="pro_email1">
           </div>
           <div class="mb-3 col-sm-6 col-md-4">
             <label for="pro_email12" class="form-label">Email 2</label>
-            <input type="text" class="form-control" id="pro_email12" name="pro_email12">
+            <input tabindex="5" type="text" class="form-control" id="pro_email12" name="pro_email12">
           </div>
           <div class="mb-3 col-sm-6 col-md-4">
             <label for="pro_cel" class="form-label">Teléfono de contacto</label>
             <input type="text" class="form-control" id="pro_cel" name="pro_cel">
+          </div>
+          <div class="mb-3 col-sm-6 col-md-4">
+            <label for="us_estado" class="form-label">Estado</label>
+            <select tabindex="6" id="us_estado" name="us_estado" class="form-select" style="width:100%;">
+              <option selected>Seleccione estado</option>
+              <option>Activo</option>
+              <option>Inactivo</option>
+            </select>
           </div>
         </div>
       </div>
