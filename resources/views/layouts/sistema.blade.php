@@ -53,10 +53,10 @@
   </div>
 </div>
 <div class="px-4">
-  <div class="content-body"> 
-    <!-- Dashboard Ecommerce Starts --> 
-    @yield('content') 
-    <!-- Dashboard Ecommerce ends --> 
+  <div class="content-body">
+    <!-- Dashboard Ecommerce Starts -->
+    @yield('content')
+    <!-- Dashboard Ecommerce ends -->
   </div>
 </div>
 </body>
