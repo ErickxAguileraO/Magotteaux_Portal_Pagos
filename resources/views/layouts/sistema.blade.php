@@ -35,12 +35,13 @@
             <div class="dropdown text-end"> <a href="#" class="d-block nav-link text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> dgijon@aeurus.cl </a>
                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item" href="#"><img src="{{ asset('imagenes/sitio/pagos.png') }}" width="16" height="16" alt="Consulta de pagos" /> Consulta visualización de pagos</a></li>
-                  <li><a class="dropdown-item" href="{{ route('web.logout') }}"><img src="{{ asset('imagenes/sitio/cerrar-sesion.png') }}" width="17" height="16" alt="Cerrar sesión" /> Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="#"><img src="{{ asset('imagenes/sitio/cerrar-sesion.png') }}" width="17" height="16" alt="Cerrar sesión" /> Cerrar sesión</a></li>
                </ul>
             </div>
          </div>
       </div>
    </header>
+
    <div class="p-4">
       <div class="container-fluid">
          <nav aria-label="breadcrumb">
@@ -58,6 +59,7 @@
          <!-- Dashboard Ecommerce ends -->
       </div>
    </div>
+
    @include('imports.notifications')
 
    <!-- JS -->

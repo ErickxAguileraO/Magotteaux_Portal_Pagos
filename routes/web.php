@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Sistema\UsuarioController;
+use App\Http\Controllers\Sistema\ProveedorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,15 +59,23 @@ Route::get('maqueta/proveedor/', function () {
 Route::get('maqueta/proveedor/crear', function () {
      return view('maqueta.proveedor.crear');
 });
+Route::get('maqueta/editar-mi-perfil/', function () {
+     return view('maqueta.proveedor.perfil');
+});
 
 
 Route::group(['as' => 'web.'], function () {
      Route::middleware(['guest'])->group(function () {
+
+          // Route::get('login', [AuthController::class, 'login'])->name('login');
+          // Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+          Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
+          Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
           Route::get('', [AuthController::class, 'login'])->name('login');
           Route::get('login', [AuthController::class, 'login'])->name('login');
           Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
-          //      Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
-          //      Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
+          //Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
+          //Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
      });
 
      Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -89,14 +98,14 @@ Route::middleware(['auth'])->group(function () {
           // Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
      });
 
-     // Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
-     //      Route::get('', [ProveedorController::class, 'index'])->name('index');
-     //      Route::get('list', [ProveedorController::class, 'list'])->name('list');
-     //      Route::get('nuevo-proveedor', [ProveedorController::class, 'create'])->name('create');
-     //      Route::post('store', [ProveedorController::class, 'store'])->name('store');
-     //      Route::get('editar-proveedor/{id}', [ProveedorController::class, 'edit'])->name('edit');
-     //      Route::post('update/{id}', [ProveedorController::class, 'update'])->name('update');
-     //      Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
-     //      Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
-     // });
+     Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
+          Route::get('', [ProveedorController::class, 'index'])->name('index');
+          Route::get('list', [ProveedorController::class, 'list'])->name('list');
+          Route::get('nuevo-proveedor', [ProveedorController::class, 'create'])->name('create');
+          Route::post('store', [ProveedorController::class, 'store'])->name('store');
+          Route::get('editar-proveedor/{id}', [ProveedorController::class, 'edit'])->name('edit');
+          Route::post('update/{id}', [ProveedorController::class, 'update'])->name('update');
+          Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
+          Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
+     });
 });

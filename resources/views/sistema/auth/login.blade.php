@@ -31,8 +31,7 @@
                            <label for="email">Email</label>
                            <input type="text" name="email" id="email" placeholder="Ingrese su email" tabindex="1" value="{{ old('email') }}" class="form-control" required />
                            @error('email')
-                              <span class="invalid-feedback badge alert-danger" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback badge alert-danger" role="alert">                              {{ $message }}
                               </span>
                            @enderror
                         </div>
@@ -41,8 +40,7 @@
                            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" tabindex="2" value="{{ old('password') }}" class="form-control" required />
                            <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                            @error('password')
-                              <span class="invalid-feedback badge alert-danger" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback badge alert-danger" role="alert">                              {{ $message }}
                               </span>
                            @enderror
                         </div>
