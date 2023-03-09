@@ -59,6 +59,9 @@ Route::get('maqueta/proveedor/', function () {
 Route::get('maqueta/proveedor/crear', function () {
     return view('maqueta.proveedor.crear');
 });
+Route::get('maqueta/editar-mi-perfil/', function () {
+    return view('maqueta.proveedor.perfil');
+});
 
 
 Route::group(['as' => 'web.'], function () {
