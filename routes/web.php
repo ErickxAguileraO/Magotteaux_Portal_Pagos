@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Sistema\UsuarioController;
+use App\Http\Controllers\Sistema\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -94,14 +95,14 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
     });
 
-    // Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
-    //      Route::get('', [ProveedorController::class, 'index'])->name('index');
-    //      Route::get('list', [ProveedorController::class, 'list'])->name('list');
-    //      Route::get('nuevo-proveedor', [ProveedorController::class, 'create'])->name('create');
-    //      Route::post('store', [ProveedorController::class, 'store'])->name('store');
-    //      Route::get('editar-proveedor/{id}', [ProveedorController::class, 'edit'])->name('edit');
-    //      Route::post('update/{id}', [ProveedorController::class, 'update'])->name('update');
-    //      Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
-    //      Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
-    // });
+    Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
+         Route::get('', [ProveedorController::class, 'index'])->name('index');
+         Route::get('list', [ProveedorController::class, 'list'])->name('list');
+         Route::get('nuevo-proveedor', [ProveedorController::class, 'create'])->name('create');
+         Route::post('store', [ProveedorController::class, 'store'])->name('store');
+         Route::get('editar-proveedor/{id}', [ProveedorController::class, 'edit'])->name('edit');
+         Route::post('update/{id}', [ProveedorController::class, 'update'])->name('update');
+         Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
+         Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
+    });
 });
