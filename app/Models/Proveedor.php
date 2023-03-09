@@ -24,6 +24,19 @@ class Proveedor extends Model
         'pro_pais_id',
     ];
 
+    /***********************************************************
+     *  Local scope
+     ************************************************************/
+
+    public function scopeActive($query)
+    {
+        return $query->where('pro_estado', 1);
+    }
+
+
+    /***********************************************************
+     *  Eloquent relationships
+     ************************************************************/
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'pro_pais_id', 'pai_id');

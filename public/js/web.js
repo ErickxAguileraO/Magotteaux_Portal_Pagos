@@ -1,5 +1,8 @@
 window.addEventListener('load', () => {
 
+    const TIPO_FINANZA = 1;
+    const TIPO_PROVEEDOR = 3;
+
     /***********************************
      *  Iniciar plugins
      **********************************/
@@ -24,6 +27,25 @@ window.addEventListener('load', () => {
                 if (result.isConfirmed) window.location = boton.getAttribute("href");
             });
 
+        }
+    });
+
+    $('#tipo').on('change', function (e) {
+        const value = e.currentTarget.value;
+
+        const content_planta = document.querySelector('.content-planta');
+        const content_proveedor = document.querySelector('.content-proveedor');
+
+        if (value == TIPO_FINANZA) {
+            content_planta.classList.remove('d-none');
+            content_proveedor.classList.add('d-none');
+            
+        } else if (value == TIPO_PROVEEDOR) {
+            content_planta.classList.add('d-none');
+            content_proveedor.classList.remove('d-none');
+        } else {
+            content_planta.classList.add('d-none');
+            content_proveedor.classList.add('d-none');
         }
     });
 });

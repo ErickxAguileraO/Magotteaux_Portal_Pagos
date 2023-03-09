@@ -694,22 +694,14 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', end
 *   CSS adicional
 *****************************************************/
 
-.alert-danger {
-    display: block;
-    background: rgba(234, 84, 85, 0.12) !important;
-    color: #ea5455 !important;
-    border-radius: 5px;
-    text-align: center;
-}
-
 .invalid-feedback {
     margin-top: 0.25rem;
     font-size: 0.857rem;
     color: #ea5455;
+	font-weight: normal;
 }
-
-.invalid-feedback span{
-    color: #dc3545;
+.invalid-feedback strong{
+	white-space: pre-wrap;
 }
 
 .pointer-event-none{
