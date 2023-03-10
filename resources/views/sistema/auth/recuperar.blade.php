@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="text-center" style="padding-top: 10px;">
                                     <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 50px;">Recuperar contraseña <img src="/public/imagenes/sitio/btn-login.svg" alt="" width="14" height="14" /></button>
-                                    <p class="text-center"><a href="/maqueta/login/">Volver a Iniciar Sesión</a></p>
+                                    <p class="text-center"><a href="{{ route('web.login') }}">Volver a Iniciar Sesión</a></p>
                                 </div>
                             </fieldset>
                         </form>

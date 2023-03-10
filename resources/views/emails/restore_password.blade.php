@@ -70,7 +70,7 @@
             <br>
             Magotteaux
          <p>
-            Enlace plataforma: <a href="http://magotteaux.aeurus.cl/login" class="link">http://magotteaux.aeurus.cl/login</a>
+            Enlace plataforma: <a href="https://www.magotteaux.portaldepagos.aeurus.cl/login" class="link">https://www.magotteaux.portaldepagos.aeurus.cl/login</a>
          </p>
          <br>
 
