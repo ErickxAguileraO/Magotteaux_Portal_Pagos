@@ -88,6 +88,11 @@ class User extends Authenticatable
      *  Eloquent relationships
      ************************************************************/
 
+    public function planta()
+    {
+        return $this->belongsTo(Planta::class, 'usu_planta_id', 'pla_id');
+    }
+
     /***********************************************************
      *  Auxiliary functions
      ************************************************************/

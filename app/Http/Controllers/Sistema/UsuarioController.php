@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Exports\UsuariosExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\CreateUsuarioRequest;
 use App\Http\Requests\Usuario\UpdateUsuarioRequest;
+use App\Http\Resources\UsuarioResource;
 use App\Models\Planta;
 use App\Models\Proveedor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
@@ -19,12 +22,12 @@ class UsuarioController extends Controller
         return view('sistema.usuario.index');
     }
 
-    // public function list()
-    // {
-    //     $usuarios = User::with('planta')->ignoreFirstUser()->get();
+    public function list()
+    {
+        $usuarios = User::with('planta')->ignoreFirstUser()->get();
 
-    //     return UsuarioResource::collection($usuarios);
-    // }
+        return UsuarioResource::collection($usuarios);
+    }
 
     public function create()
     {
@@ -86,7 +89,7 @@ class UsuarioController extends Controller
 
             $usuario = User::ignoreFirstUser()->findOrFail($id);
             $rol = Role::findOrFail($request->post('tipo'));
-            
+
             $usuario->update([
                 'usu_nombre' => $request->post('nombre'),
                 'usu_apellido' => $request->post('apellido'),
@@ -97,11 +100,11 @@ class UsuarioController extends Controller
                 'usu_planta_id' => $request->post('tipo') == User::TIPO_FINANZA ? $request->post('planta') : null,
                 'usu_proveedor_id' => $request->post('tipo') == User::TIPO_PROVEEDOR ? $request->post('proveedor') : null,
             ]);
-            
+
             if ($request->post('contrasena')) {
                 $usuario->update(['usu_password' => $request->post('contrasena')]);
             }
-            
+
             $usuario->syncRoles($rol->name);
 
             DB::commit();
@@ -112,31 +115,27 @@ class UsuarioController extends Controller
         }
     }
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         $usuario = User::withExists('cargas')->findOrFail($id);
+    public function delete(int $id)
+    {
+        try {
+            User::ignoreFirstUser()->findOrFail($id)->delete();
 
-    //         if ($usuario->cargas_exists) return redirect()->route('usuario.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            return redirect()->route('usuario.index')->with(['message' => 'Usuario eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
 
-    //         User::ignoreFirstUser()->findOrFail($id)->delete();
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el usuario', 'type' => 'error']);
+        }
+    }
 
-    //         return redirect()->route('usuario.index')->with(['message' => 'Usuario eliminado correctamente', 'type' => 'success']);
-    //     } catch (\Throwable $th) {
+    public function downloadExcel()
+    {
+        try {
+            $usuarios = User::with('planta')->ignoreFirstUser()->get();
 
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el usuario', 'type' => 'error']);
-    //     }
-    // }
+            return Excel::download(new UsuariosExport($usuarios), 'usuarios.xlsx');
+        } catch (\Throwable $th) {
 
-    // public function downloadExcel()
-    // {
-    //     try {
-    //         $usuarios = User::with('planta')->ignoreFirstUser()->get();
-
-    //         return Excel::download(new UsuariosExport($usuarios), 'usuarios.xlsx');
-    //     } catch (\Throwable $th) {
-
-    //         return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
-    //     }
-    // }
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
+    }
 }
