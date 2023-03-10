@@ -11,7 +11,7 @@ class Planta extends Model
 {
     use HasFactory, StatusConvert, SoftDeletes;
 
-    public $timestams = false;
+    public $timestamps = false;
     protected $table = 'plantas';
     protected $prefix = 'pla';
     protected $primaryKey = 'pla_id';
