@@ -46,7 +46,7 @@
                         </div>
                         <div class="text-center" style="padding-top: 10px;">
                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">Iniciar sesión <img src="/public/imagenes/sitio/btn-login.svg" alt="" width="14" height="14"></button>
-                           <p class="text-center"><a href="/maqueta/login/recuperar/">Olvidé mi contraseña</a></p>
+                           <p class="text-center"><a href="{{ route('web.restore.password') }}">Olvidé mi contraseña</a></p>
                         </div>
                      </fieldset>
                      @csrf
