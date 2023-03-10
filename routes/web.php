@@ -66,27 +66,17 @@ Route::get('maqueta/editar-mi-perfil/', function () {
 
 Route::group(['as' => 'web.'], function () {
      Route::middleware(['guest'])->group(function () {
-
-          // Route::get('login', [AuthController::class, 'login'])->name('login');
-          // Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
           Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
           Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
           Route::get('', [AuthController::class, 'login'])->name('login');
           Route::get('login', [AuthController::class, 'login'])->name('login');
           Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
-          //Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
-          //Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
      });
 
      Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['auth'])->group(function () {
-     // Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {
-     //      Route::get('edit', [CuentaController::class, 'edit'])->name('edit');
-     //      Route::put('update', [CuentaController::class, 'update'])->name('update');
-     // });
-
      Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
           Route::get('', [UsuarioController::class, 'index'])->name('index');
           Route::get('list', [UsuarioController::class, 'list'])->name('list');
