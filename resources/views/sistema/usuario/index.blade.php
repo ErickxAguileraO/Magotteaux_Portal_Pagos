@@ -7,7 +7,7 @@
             <div class="card-body">
                <ul class="menu">
                   <li class="active"><a href="#"><i class="fa-regular fa-user fa-fw"></i> Usuarios</a></li>
-                  <li><a href="#"><i class="fa-light fa-user-group fa-fw"></i> Proveedores</a></li>
+                  <li><a href="{{ route('proveedor.index') }}"><i class="fa-light fa-user-group fa-fw"></i> Proveedores</a></li>
                </ul>
             </div>
          </div>

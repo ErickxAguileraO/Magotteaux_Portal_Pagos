@@ -11,15 +11,10 @@ class Proveedor extends Model
 {
     use HasFactory, StatusConvert, SoftDeletes;
 
-    protected $table = 'proveedores';
+    public $timestamps = false;
     protected $prefix = 'pro';
+    protected $table = 'proveedores';
     protected $primaryKey = 'pro_id';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'pro_id',
         'pro_razon_social',
@@ -42,4 +37,8 @@ class Proveedor extends Model
     /***********************************************************
      *  Eloquent relationships
      ************************************************************/
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'pro_pais_id', 'pai_id');
+    }
 }

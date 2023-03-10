@@ -31,8 +31,7 @@
                            <label for="email">Email</label>
                            <input type="text" name="email" id="email" placeholder="Ingrese su email" tabindex="1" value="{{ old('email') }}" class="form-control" required />
                            @error('email')
-                              <span class="invalid-feedback badge alert-danger" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback badge alert-danger" role="alert">                              {{ $message }}
                               </span>
                            @enderror
                         </div>
@@ -41,14 +40,13 @@
                            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" tabindex="2" value="{{ old('password') }}" class="form-control" required />
                            <p id="mostrar-pass" onclick="mostrarContrasena()">Mostrar</p>
                            @error('password')
-                              <span class="invalid-feedback badge alert-danger" role="alert">
-                                 <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback badge alert-danger" role="alert">                              {{ $message }}
                               </span>
                            @enderror
                         </div>
                         <div class="text-center" style="padding-top: 10px;">
                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">Iniciar sesión <img src="/public/imagenes/sitio/btn-login.svg" alt="" width="14" height="14"></button>
-                           <p class="text-center"><a href="/maqueta/login/recuperar/">Olvidé mi contraseña</a></p>
+                           <p class="text-center"><a href="{{ route('web.restore.password') }}">Olvidé mi contraseña</a></p>
                         </div>
                      </fieldset>
                      @csrf

@@ -24,7 +24,7 @@ button img, button i{ margin-left: 6px;}
 	color: #E59A00;
 	background: #FFFEEA;
 }
-
+.swal2-title { font-size: 16px;}
 .bd { border-bottom: 2px solid #EBEBEB; padding-bottom: 16px; margin-bottom: 20px;}
 .text-file {
 	color: #5E9B6D;
