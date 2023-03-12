@@ -15,6 +15,8 @@
    <link rel="stylesheet" type="text/css" href="{{ asset('css/hoja-estilos.css') }}">
    <!-- END: Custom CSS-->
    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/css/sweetalert2.min.css') }}">
+   <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.4/css/dx.light.css" />
+   <link rel="stylesheet" type="text/css" href="{{ asset('plugins/devextreme/devextreme.css') }}" />
    <!-- favicon -->
    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" />
 </head>
@@ -68,6 +70,8 @@
    <script src="{{ asset('js/jquery/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
    <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.min.js') }}"></script>
+   <script src="{{ asset('plugins/devextreme/devextreme.js') }}"></script>
+   <script src="{{ asset('plugins/devextreme/dx.messages.es.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script>
    <script src="{{ asset('js/web.js') }}"></script>

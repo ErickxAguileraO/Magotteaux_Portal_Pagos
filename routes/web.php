@@ -66,36 +66,26 @@ Route::get('maqueta/editar-mi-perfil/', function () {
 
 Route::group(['as' => 'web.'], function () {
      Route::middleware(['guest'])->group(function () {
-
-          // Route::get('login', [AuthController::class, 'login'])->name('login');
-          // Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
           Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
           Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
           Route::get('', [AuthController::class, 'login'])->name('login');
           Route::get('login', [AuthController::class, 'login'])->name('login');
           Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
-          //Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
-          //Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
      });
 
      Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['auth'])->group(function () {
-     // Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {
-     //      Route::get('edit', [CuentaController::class, 'edit'])->name('edit');
-     //      Route::put('update', [CuentaController::class, 'update'])->name('update');
-     // });
-
      Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
           Route::get('', [UsuarioController::class, 'index'])->name('index');
-          // Route::get('list', [UsuarioController::class, 'list'])->name('list');
+          Route::get('list', [UsuarioController::class, 'list'])->name('list');
           Route::get('nuevo-usuario', [UsuarioController::class, 'create'])->name('create');
           Route::post('store', [UsuarioController::class, 'store'])->name('store');
           Route::get('editar-usuario/{id}', [UsuarioController::class, 'edit'])->name('edit')->whereNumber('id');
           Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update')->whereNumber('id');
-          // Route::get('delete/{id}', [UsuarioController::class, 'delete'])->name('delete')->whereNumber('id');
-          // Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
+          Route::get('delete/{id}', [UsuarioController::class, 'delete'])->name('delete')->whereNumber('id');
+          Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
      });
 
      Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
