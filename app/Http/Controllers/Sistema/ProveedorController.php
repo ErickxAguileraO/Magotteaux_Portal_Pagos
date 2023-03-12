@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sistema;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Proveedor\CreateProveedorRequest;
 use App\Http\Requests\Proveedor\UpdateProveedorRequest;
+use App\Http\Resources\ProveedorResource;
 use App\Models\Correo;
 use App\Models\Pais;
 use App\Models\Proveedor;
@@ -141,5 +142,27 @@ class ProveedorController extends Controller
         // } catch (\Throwable $th) {
         //     return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar proveedor', 'type' => 'error']);
         // }
+    }
+
+    public function list()
+    {
+        return ProveedorResource::collection(Proveedor::withFilters()->get());
+    }
+
+    public function delete(int $id)
+    {
+        try {
+
+            // $cliente = Cliente::withExists('cargas')->findOrFail($id);
+            // $destino = Cliente::withExists('destinos')->findOrFail($id);
+
+            // if($cliente->cargas_exists) return redirect()->route('cliente.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            // if($destino->destinos_exists) return redirect()->route('cliente.index')->with(['message' => 'No se puede eliminar porque tiene información relacionada', 'type' => 'error']);
+            // $cliente->delete();
+            // return redirect()->route('cliente.index')->with(['message' => 'Cliente eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el cliente', 'type' => 'error']);
+        }
     }
 }
