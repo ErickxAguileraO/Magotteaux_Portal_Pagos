@@ -20,8 +20,8 @@ class CreateTipoPagosTable extends Migration
         });
 
         TipoPago::insert([
-            ['tip_nombre' => 'Transferencias'],
-            ['tip_nombre' => 'Vale vistas'],
+            ['tip_id' => 1, 'tip_nombre' => 'Transferencias'],
+            ['tip_id' => 2, 'tip_nombre' => 'Vale vistas'],
         ]);
     }
 
