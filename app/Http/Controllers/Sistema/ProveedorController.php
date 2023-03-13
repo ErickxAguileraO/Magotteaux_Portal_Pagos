@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Sistema;
 
+use App\Exports\ProveedorExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Proveedor\CreateProveedorRequest;
 use App\Http\Requests\Proveedor\UpdateProveedorRequest;
+use App\Http\Resources\ProveedorResource;
 use App\Models\Correo;
 use App\Models\Pais;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProveedorController extends Controller
 {
@@ -81,7 +84,7 @@ class ProveedorController extends Controller
     public function update(UpdateProveedorRequest $request, int $id)
     {
 
-        // try {
+        try {
         //  $correo = Correo::where('cor_proveedor_id',$id)->first();
         //  dd($correo);
         if ($request->email_dos == '') {
@@ -138,8 +141,39 @@ class ProveedorController extends Controller
             return redirect()->route('proveedor.index')->with(['message' => 'Se edito proveedor', 'type' => 'success']);
         }
 
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar proveedor', 'type' => 'error']);
-        // }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar proveedor', 'type' => 'error']);
+        }
+    }
+
+    public function list()
+    {
+        $proveedor = Proveedor::all();
+        return ProveedorResource::collection($proveedor);
+    }
+
+    public function delete(int $id)
+    {
+        try {
+
+            $proveedor = Proveedor::findOrFail($id);
+            $proveedor->delete();
+            return redirect()->route('proveedor.index')->with(['message' => 'Proveedor eliminado correctamente', 'type' => 'success']);
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar eliminar el proveedor', 'type' => 'error']);
+        }
+    }
+
+    public function downloadExcel()
+    {
+        try {
+            $proveedor = Proveedor::orderBy('pro_id','desc')->get();
+
+            return Excel::download(new ProveedorExport($proveedor), 'Proveedores.xlsx');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar descargar el excel', 'type' => 'error']);
+        }
     }
 }
