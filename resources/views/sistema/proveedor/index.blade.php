@@ -1,7 +1,7 @@
 @extends('layouts.sistema')
 @section('title', 'Consulta visualización de pagos')
-@section('js_personalizado')
-@endsection
+{{-- @section('js_personalizado') --}}
+{{-- @endsection --}}
 @section('content')
 <div class="row">
   <div class="mb-3 mb-md-0 col-md-3 col-lg-2">
@@ -42,7 +42,7 @@
 </div>
 @endsection
 
-@push('extra-js')
+@section('js_personalizado')
     <script>
         const grid = document.getElementById('container-datagrid');
 
@@ -98,14 +98,14 @@
                     // filtro en cabecera para STRING filterOperations:[ "contains", "notcontains", "startswith", "endswith", "=", "<>" ],
                     // filtro en cabecera para DATE filterOperations:[ "=", "<>", "<", ">", "<=", ">=", "between" ],
                     // en caso de tener 2 o más filtros, para dejar uno por defecto se usa selectedFilterOperation: "between",
-                    // {
-                    //     dataField: 'id',
-                    //     caption: 'Id',
-                    //     dataType: 'number',
-                    //     visible: false,
-                    //     sortIndex: 1, // al cargar, ordena por esta columna
-                    //     sortOrder: "desc", // orden descendente
-                    // },
+                    {
+                        dataField: 'id',
+                        caption: 'Id',
+                        dataType: 'number',
+                        visible: false,
+                        sortIndex: 1, // al cargar, ordena por esta columna
+                        sortOrder: "desc", // orden descendente
+                    },
                     {
                         dataField: 'nombre',
                         caption: 'Razón social',
@@ -159,8 +159,8 @@
                             const url_edit = $(grid).data('link-edit').replace(':id', options.data.id);
                             const url_delete = $(grid).data('link-delete').replace(':id', options.data.id);
 
-                            const link_edit = '<a href="' + url_edit + '" class="tooltip" title="Editar"><img src="/web/imagenes/i-editar-green.svg" alt=""></a>';
-                            const link_delete = '<a href="' + url_delete + '" class="tooltip delete-confirmation" title="Eliminar" data-message="este proveedor"><img class="pointer-event-none" src="/web/imagenes/i-borrar-red.svg" alt=""></a>';
+                            const link_edit = '<a href="' + url_edit + '" class="text-success me-2" title="Editar"><i class="fa-light fa-pencil fa-fw"></i></a>';
+                            const link_delete = '<a href="' + url_delete + '" class="text-danger eliminar delete-confirmation" title="Eliminar" data-message="el proveedor"><i class="fa-regular fa-trash fa-fw pointer-event-none"></i></a>';
 
                             return $(link_edit + link_delete);
                         },
@@ -169,4 +169,4 @@
             }).dxDataGrid('instance');
         });
     </script>
-@endpush
+@endsection
