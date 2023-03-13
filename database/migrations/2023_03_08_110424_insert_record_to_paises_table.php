@@ -42,6 +42,6 @@ class InsertRecordToPaisesTable extends Migration
      */
     public function down()
     {
-        Pais::query()->forceDelete();
+        Pais::query()->delete();
     }
 }
