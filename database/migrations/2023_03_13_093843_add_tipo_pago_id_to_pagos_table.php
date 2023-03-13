@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pago;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,11 @@ class AddTipoPagoIdToPagosTable extends Migration
     {
         Schema::table('pagos', function (Blueprint $table) {
             $table->unsignedBigInteger('pag_tipo_pago_id')->after('pag_log_carga_id');
-
+        });
+        
+        Pago::query()->update(['pag_tipo_pago_id' => 1]);
+        
+        Schema::table('pagos', function (Blueprint $table) {
             $table->foreign('pag_tipo_pago_id')->references('tip_id')->on('tipo_pagos');
         });
     }
