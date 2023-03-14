@@ -74,6 +74,8 @@
    <script src="{{ asset('plugins/devextreme/dx.messages.es.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script>
    <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script>
+   <script src="{{ asset('plugins/devextreme/devextreme.js') }}"></script>
+   <script src="{{ asset('plugins/devextreme/dx.messages.es.js') }}"></script>
    <script src="{{ asset('js/web.js') }}"></script>
    @yield('js_personalizado')
 </body>
