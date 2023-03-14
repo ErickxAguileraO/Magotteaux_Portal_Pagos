@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
           Route::get('', [PagoController::class, 'index'])->name('index');
           Route::get('list', [PagoController::class, 'list'])->name('list');
           Route::get('show/{id}', [PagoController::class, 'show'])->name('show')->whereNumber('id');
-          Route::get('download-excel', [PagoController::class, 'downloadExcel'])->name('download.excel');
+          Route::get('download-excel/{id?}', [PagoController::class, 'downloadExcel'])->name('download.excel')->whereNumber('id');
      });
 
      Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {

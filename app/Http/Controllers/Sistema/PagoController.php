@@ -20,24 +20,32 @@ class PagoController extends Controller
         return view('sistema.pago.index', compact('plantas'));
     }
 
+    public function show(int $id)
+    {
+        $pago = Pago::with('tipo')->findOrFail($id);
+
+        return view('sistema.pago.detalle', compact('pago'));
+    }
+
     public function list()
     {
-        $isProveedor = auth()->user()->hasRole('Proveedor');
-
-        $pagos = Pago::with('tipo')
-            ->withFilters($isProveedor)
-            ->orderByDesc('pag_id')
-            ->get();
+        $pagos = Pago::with('tipo')->withFilters()->orderByDesc('pag_id')->get();
 
         return PagoResource::collection($pagos);
     }
 
-    public function downloadExcel()
+    public function downloadExcel(?int $id = null)
     {
         try {
             $isProveedor = auth()->user()->hasRole('Proveedor');
 
-            $pagos = Pago::withFilters($isProveedor)->with('planta:pla_id,pla_nombre')->orderByDesc('pag_id')->get();
+            $pagos = Pago::withFilters()
+                ->with('planta:pla_id,pla_nombre')
+                ->when($id, function ($query, $id) {
+                    $query->where('pag_id', $id);
+                })
+                ->orderByDesc('pag_id')
+                ->get();
 
             $export = $isProveedor ? new PagosProveedorExport($pagos) : new PagosExport($pagos);
 
