@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Sistema;
 use App\Exports\PagosExport;
 use App\Exports\PagosProveedorExport;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PagoProveedorResource;
 use App\Http\Resources\PagoResource;
 use App\Models\Pago;
 use App\Models\Planta;
@@ -15,7 +14,7 @@ class PagoController extends Controller
 {
     public function index()
     {
-        $plantas = Planta::active()->get();
+        $plantas = Planta::active()->validateFinanzaRole()->get();
 
         return view('sistema.pago.index', compact('plantas'));
     }
