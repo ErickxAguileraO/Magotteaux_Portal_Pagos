@@ -18,7 +18,7 @@ use App\Http\Controllers\Sistema\PagoController;
 */
 
 /***** MAQUETA *****/
-Route::get('maqueta/login/', function () {
+/* Route::get('maqueta/login/', function () {
      return view('maqueta.login.index');
 });
 Route::get('maqueta/login/recuperar', function () {
@@ -29,7 +29,7 @@ Route::get('maqueta/login/nueva', function () {
 });
 Route::get('maqueta/login/envio', function () {
      return view('maqueta.login.envio');
-});
+}); */
 
 
 /* Route::get('maqueta/cargas/', function () {
@@ -54,7 +54,7 @@ Route::get('maqueta/pagos/detalle2/', function () {
 Route::get('maqueta/usuario/crear', function () {
      return view('maqueta.usuario.crear');
 }); */
-Route::get('maqueta/proveedor/', function () {
+/* Route::get('maqueta/proveedor/', function () {
      return view('maqueta.proveedor.index');
 });
 Route::get('maqueta/proveedor/crear', function () {
@@ -62,7 +62,7 @@ Route::get('maqueta/proveedor/crear', function () {
 });
 Route::get('maqueta/editar-mi-perfil/', function () {
      return view('maqueta.proveedor.perfil');
-});
+}); */
 
 
 Route::group(['as' => 'web.'], function () {

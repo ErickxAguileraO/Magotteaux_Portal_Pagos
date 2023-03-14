@@ -21,7 +21,7 @@ class PagoController extends Controller
 
     public function show(int $id)
     {
-        $pago = Pago::with('tipo')->findOrFail($id);
+        $pago = Pago::with('tipo')->validateRole()->findOrFail($id);
 
         return view('sistema.pago.detalle', compact('pago'));
     }

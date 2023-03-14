@@ -35,6 +35,18 @@ class Pago extends Model
         });
     }
 
+    public function scopeValidateRole($query)
+    {
+        $proveedor = auth()->user()->proveedor;
+        $id_planta = auth()->user()->usu_planta_id;
+
+        return $query->when($proveedor, function ($query, $proveedor) {
+            $query->where('pag_identificacion', $proveedor->pro_identificacion);
+        })->when($id_planta, function ($query, $id_planta) {
+            $query->where('pag_planta_id', $id_planta);
+        });
+    }
+
     /***********************************************************
      *  Eloquent relationships
      ************************************************************/
