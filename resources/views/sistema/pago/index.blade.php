@@ -27,12 +27,18 @@
             @if (!auth()->user()->hasRole('Proveedor'))
                <div class="mb-3 col-sm-6 col-md-4">
                   <label for="planta" class="form-label">Planta</label>
-                  <select id="planta" name="planta" class="form-select" style="width:100%;">
-                     <option value="">Todos</option>
-                     @foreach ($plantas as $planta)
-                        <option value="{{ $planta->pla_id }}">{{ $planta->pla_nombre }}</option>
-                     @endforeach
-                  </select>
+                  @if (auth()->user()->hasRole('Finanza'))
+                     <div class="form-select">{{ $plantas->first()->pla_nombre }}</div>
+                  @endif
+
+                  @if (auth()->user()->hasRole(['Gerencia', 'Tesorero']))
+                     <select id="planta" name="planta" class="form-select" style="width:100%;">
+                        <option value="">Todos</option>
+                        @foreach ($plantas as $planta)
+                           <option value="{{ $planta->pla_id }}">{{ $planta->pla_nombre }}</option>
+                        @endforeach
+                     </select>
+                  @endif
                </div>
             @endif
          </div>
