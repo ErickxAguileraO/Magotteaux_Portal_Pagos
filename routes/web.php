@@ -4,6 +4,7 @@ use App\Http\Controllers\Sistema\UsuarioController;
 use App\Http\Controllers\Sistema\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Sistema\CargaMasivaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,4 +99,16 @@ Route::middleware(['auth'])->group(function () {
           Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
           Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
      });
+
+     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
+        Route::get('', [CargaMasivaController::class, 'index'])->name('index');
+        Route::get('list', [CargaMasivaController::class, 'list'])->name('list');
+        Route::post('importar-excel', [CargaMasivaController::class, 'importar'])->name('importar');
+        Route::get('nuevo-proveedor', [CargaMasivaController::class, 'create'])->name('create');
+        Route::post('store', [CargaMasivaController::class, 'store'])->name('store');
+        Route::get('editar-proveedor/{id}', [CargaMasivaController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [CargaMasivaController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [CargaMasivaController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [CargaMasivaController::class, 'downloadExcel'])->name('download.excel');
+   });
 });
