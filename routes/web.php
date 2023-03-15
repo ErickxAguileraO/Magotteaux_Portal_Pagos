@@ -4,6 +4,7 @@ use App\Http\Controllers\Sistema\UsuarioController;
 use App\Http\Controllers\Sistema\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Sistema\PagoController;
 use App\Http\Controllers\Sistema\CargaMasivaController;
 
 /*
@@ -32,10 +33,10 @@ Route::get('maqueta/login/envio', function () {
 });
 
 
-Route::get('maqueta/cargas/', function () {
+/* Route::get('maqueta/cargas/', function () {
      return view('maqueta.cargas.index');
-});
-Route::get('maqueta/pagos/', function () {
+}); */
+/* Route::get('maqueta/pagos/', function () {
      return view('maqueta.pagos.index');
 });
 Route::get('maqueta/pagos/proveedor/', function () {
@@ -46,14 +47,14 @@ Route::get('maqueta/pagos/detalle/', function () {
 });
 Route::get('maqueta/pagos/detalle2/', function () {
      return view('maqueta.pagos.detalle2');
-});
+}); */
 
-Route::get('maqueta/usuario/', function () {
+/* Route::get('maqueta/usuario/', function () {
      return view('maqueta.usuario.index');
 });
 Route::get('maqueta/usuario/crear', function () {
      return view('maqueta.usuario.crear');
-});
+}); */
 Route::get('maqueta/proveedor/', function () {
      return view('maqueta.proveedor.index');
 });
@@ -78,7 +79,7 @@ Route::group(['as' => 'web.'], function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-     Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
+     Route::group(['prefix' => 'usuario', 'as' => 'usuario.', 'middleware' => ['role:Administrador']], function () {
           Route::get('', [UsuarioController::class, 'index'])->name('index');
           Route::get('list', [UsuarioController::class, 'list'])->name('list');
           Route::get('nuevo-usuario', [UsuarioController::class, 'create'])->name('create');
@@ -87,6 +88,13 @@ Route::middleware(['auth'])->group(function () {
           Route::post('update/{id}', [UsuarioController::class, 'update'])->name('update')->whereNumber('id');
           Route::get('delete/{id}', [UsuarioController::class, 'delete'])->name('delete')->whereNumber('id');
           Route::get('download-excel', [UsuarioController::class, 'downloadExcel'])->name('download.excel');
+     });
+
+     Route::group(['prefix' => 'pago', 'as' => 'pago.', 'middleware' => ['role:Finanza|Gerente|Tesorero|Proveedor']], function () {
+          Route::get('', [PagoController::class, 'index'])->name('index');
+          Route::get('list', [PagoController::class, 'list'])->name('list');
+          Route::get('show/{id}', [PagoController::class, 'show'])->name('show')->whereNumber('id');
+          Route::get('download-excel', [PagoController::class, 'downloadExcel'])->name('download.excel');
      });
 
      Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
