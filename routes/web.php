@@ -18,53 +18,6 @@ use App\Http\Controllers\Sistema\CargaMasivaController;
 |
 */
 
-/***** MAQUETA *****/
-Route::get('maqueta/login/', function () {
-     return view('maqueta.login.index');
-});
-Route::get('maqueta/login/recuperar', function () {
-     return view('maqueta.login.recuperar');
-});
-Route::get('maqueta/login/nueva', function () {
-     return view('maqueta.login.nueva');
-});
-Route::get('maqueta/login/envio', function () {
-     return view('maqueta.login.envio');
-});
-
-
-/* Route::get('maqueta/cargas/', function () {
-     return view('maqueta.cargas.index');
-}); */
-/* Route::get('maqueta/pagos/', function () {
-     return view('maqueta.pagos.index');
-});
-Route::get('maqueta/pagos/proveedor/', function () {
-     return view('maqueta.pagos.proveedor');
-});
-Route::get('maqueta/pagos/detalle/', function () {
-     return view('maqueta.pagos.detalle');
-});
-Route::get('maqueta/pagos/detalle2/', function () {
-     return view('maqueta.pagos.detalle2');
-}); */
-
-/* Route::get('maqueta/usuario/', function () {
-     return view('maqueta.usuario.index');
-});
-Route::get('maqueta/usuario/crear', function () {
-     return view('maqueta.usuario.crear');
-}); */
-Route::get('maqueta/proveedor/', function () {
-     return view('maqueta.proveedor.index');
-});
-Route::get('maqueta/proveedor/crear', function () {
-     return view('maqueta.proveedor.crear');
-});
-Route::get('maqueta/editar-mi-perfil/', function () {
-     return view('maqueta.proveedor.perfil');
-});
-
 
 Route::group(['as' => 'web.'], function () {
      Route::middleware(['guest'])->group(function () {
@@ -94,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
           Route::get('', [PagoController::class, 'index'])->name('index');
           Route::get('list', [PagoController::class, 'list'])->name('list');
           Route::get('show/{id}', [PagoController::class, 'show'])->name('show')->whereNumber('id');
-          Route::get('download-excel', [PagoController::class, 'downloadExcel'])->name('download.excel');
+          Route::get('download-excel/{id?}', [PagoController::class, 'downloadExcel'])->name('download.excel')->whereNumber('id');
      });
 
      Route::group(['prefix' => 'proveedor', 'as' => 'proveedor.'], function () {
