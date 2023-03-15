@@ -111,6 +111,7 @@ class UsuarioController extends Controller
 
             return redirect()->route('usuario.index')->with(['message' => 'Se edito el usuario correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
+            DB::rollBack();
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar editar el usuario', 'type' => 'error']);
         }
     }
