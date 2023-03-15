@@ -31,7 +31,7 @@
                      <div class="form-select">{{ $plantas->first()->pla_nombre }}</div>
                   @endif
 
-                  @if (auth()->user()->hasRole(['Gerencia', 'Tesorero']))
+                  @if (auth()->user()->hasRole(['Gerente', 'Tesorero']))
                      <select id="planta" name="planta" class="form-select" style="width:100%;">
                         <option value="">Todos</option>
                         @foreach ($plantas as $planta)

@@ -5,6 +5,7 @@ use App\Http\Controllers\Sistema\ProveedorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Sistema\PagoController;
+use App\Http\Controllers\Sistema\CargaMasivaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,53 +17,6 @@ use App\Http\Controllers\Sistema\PagoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/***** MAQUETA *****/
-/* Route::get('maqueta/login/', function () {
-     return view('maqueta.login.index');
-});
-Route::get('maqueta/login/recuperar', function () {
-     return view('maqueta.login.recuperar');
-});
-Route::get('maqueta/login/nueva', function () {
-     return view('maqueta.login.nueva');
-});
-Route::get('maqueta/login/envio', function () {
-     return view('maqueta.login.envio');
-}); */
-
-
-/* Route::get('maqueta/cargas/', function () {
-     return view('maqueta.cargas.index');
-}); */
-/* Route::get('maqueta/pagos/', function () {
-     return view('maqueta.pagos.index');
-});
-Route::get('maqueta/pagos/proveedor/', function () {
-     return view('maqueta.pagos.proveedor');
-});
-Route::get('maqueta/pagos/detalle/', function () {
-     return view('maqueta.pagos.detalle');
-});
-Route::get('maqueta/pagos/detalle2/', function () {
-     return view('maqueta.pagos.detalle2');
-}); */
-
-/* Route::get('maqueta/usuario/', function () {
-     return view('maqueta.usuario.index');
-});
-Route::get('maqueta/usuario/crear', function () {
-     return view('maqueta.usuario.crear');
-}); */
-/* Route::get('maqueta/proveedor/', function () {
-     return view('maqueta.proveedor.index');
-});
-Route::get('maqueta/proveedor/crear', function () {
-     return view('maqueta.proveedor.crear');
-});
-Route::get('maqueta/editar-mi-perfil/', function () {
-     return view('maqueta.proveedor.perfil');
-}); */
 
 
 Route::group(['as' => 'web.'], function () {
@@ -106,4 +60,16 @@ Route::middleware(['auth'])->group(function () {
           Route::get('delete/{id}', [ProveedorController::class, 'delete'])->name('delete')->whereNumber('id');
           Route::get('download-excel', [ProveedorController::class, 'downloadExcel'])->name('download.excel');
      });
+
+     Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
+        Route::get('', [CargaMasivaController::class, 'index'])->name('index');
+        Route::get('list', [CargaMasivaController::class, 'list'])->name('list');
+        Route::post('importar-excel', [CargaMasivaController::class, 'importar'])->name('importar');
+        Route::get('nuevo-proveedor', [CargaMasivaController::class, 'create'])->name('create');
+        Route::post('store', [CargaMasivaController::class, 'store'])->name('store');
+        Route::get('editar-proveedor/{id}', [CargaMasivaController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [CargaMasivaController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [CargaMasivaController::class, 'delete'])->name('delete')->whereNumber('id');
+        Route::get('download-excel', [CargaMasivaController::class, 'downloadExcel'])->name('download.excel');
+   });
 });

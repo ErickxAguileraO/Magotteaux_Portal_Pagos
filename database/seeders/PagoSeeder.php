@@ -30,7 +30,7 @@ class PagoSeeder extends Seeder
                 'pag_asignacion' => 'asignacion de ejemplo' . $i,
                 'pag_demora_vencimiento' => random_int(1, 1000),
                 'pag_forma_pago' => 'campo formato' . $i,
-                'pag_estado' => 1,
+                'pag_estado' => 'pagado',
                 'pag_planta_id' => rand(1, 2),
                 'pag_log_carga_id' => rand(1, 5),
             ]);
