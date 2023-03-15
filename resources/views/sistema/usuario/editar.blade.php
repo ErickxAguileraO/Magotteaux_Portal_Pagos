@@ -86,6 +86,7 @@
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-planta">
                         <label for="planta" class="form-label">Planta</label>
                         <select id="planta" name="planta" class="form-select" style="width:100%;">
+                           <option value="">Seleccione</option>
                            @foreach ($plantas as $planta)
                               @php
                                  $selected = old('planta', $usuario->usu_planta_id) == $planta->pla_id ? 'selected' : '';
@@ -105,6 +106,7 @@
                      <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-proveedor">
                         <label for="proveedor" class="form-label">Proveedor</label>
                         <select id="proveedor" name="proveedor" class="form-select" style="width:100%;">
+                           <option value="">Seleccione</option>
                            @foreach ($proveedores as $proveedor)
                               @php
                                  $selected = old('proveedor', $usuario->usu_proveedor_id) == $proveedor->pro_id ? 'selected' : '';
