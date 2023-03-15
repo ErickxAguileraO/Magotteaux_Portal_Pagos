@@ -103,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
      Route::group(['prefix' => 'carga', 'as' => 'carga.'], function () {
         Route::get('', [CargaMasivaController::class, 'index'])->name('index');
         Route::get('list', [CargaMasivaController::class, 'list'])->name('list');
+        Route::post('importar-excel', [CargaMasivaController::class, 'importar'])->name('importar');
         Route::get('nuevo-proveedor', [CargaMasivaController::class, 'create'])->name('create');
         Route::post('store', [CargaMasivaController::class, 'store'])->name('store');
         Route::get('editar-proveedor/{id}', [CargaMasivaController::class, 'edit'])->name('edit');

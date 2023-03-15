@@ -9,7 +9,6 @@ class LogCarga extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
     protected $prefix = 'log';
     protected $table = 'log_cargas';
     protected $primaryKey = 'log_id';
@@ -18,12 +17,20 @@ class LogCarga extends Model
         'log_archivo',
         'log_usuario_id',
     ];
-
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
     /***********************************************************
      *  Eloquent relationships
      ************************************************************/
-    public function pais()
+    public function usuario()
     {
         return $this->belongsTo(User::class, 'log_usuario_id', 'usu_id');
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class, 'pag_log_carga_id');
     }
 }
