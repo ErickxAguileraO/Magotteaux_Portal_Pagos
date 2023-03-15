@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if (auth()->user()->hasRole('Administrador')) return redirect()->route('usuario.index');
                 if (auth()->user()->hasRole('Tesorero')) return redirect()->route('carga.index');
-                if (auth()->user()->hasRole(['Finanza', 'Gerencia', 'Proveedor'])) return redirect()->route('pago.index');
+                if (auth()->user()->hasRole(['Finanza', 'Gerente', 'Proveedor'])) return redirect()->route('pago.index');
             }
         }
 

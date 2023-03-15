@@ -47,7 +47,8 @@ class AuthController extends Controller
         if (!$isValid) return redirect()->back()->with(['message' => 'Correo o contraseña incorrecta', 'type' => 'error'])->withInput();
 
         if (auth()->user()->hasRole('Administrador')) return redirect()->route('usuario.index');
-        if (auth()->user()->hasRole(['Tesorero', 'Finanza', 'Gerente', 'Proveedor'])) return redirect()->route('pago.index');
+        if (auth()->user()->hasRole(['Tesorero'])) return redirect()->route('carga.index');
+        if (auth()->user()->hasRole(['Finanza', 'Gerente', 'Proveedor'])) return redirect()->route('pago.index');
     }
 
     public function logout()
