@@ -17,6 +17,7 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
     private $id_carga;
     private $planta;
     private $rows = 0;
+    private $identificadores = [];
 
     public function __construct(int $id_carga, int $planta)
     {
@@ -36,6 +37,9 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
         if($count > 0){
             return null;
         }
+
+        $this->identificadores[] = $row['no_identfis1'];
+
         return new Pago([
             'pag_razon_social' => $row['razon_social'],
             'pag_cuenta' => $row['cuenta'],
@@ -57,8 +61,27 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
         ]);
     }
 
+    // public function rules(): array
+    // {
+    //     return [
+    //         '*.cuenta' => ['required'],
+    //         '*.no_identfis1' => ['required'],
+    //         '*.no_identfis1' => ['integer'],
+    //         '*.no_identfis1' => ['integer'],
+    //         '*.no_identfis1' => ['integer'],
+    //         '*.no_identfis1' => ['integer'],
+    //         '*.no_identfis1' => ['integer'],
+    //         '*.no_identfis1' => ['integer'],
+    //     ];
+    // }
+
     public function getRowCount(){
         return $this->rows;
+    }
+
+    public function getIndentificadores(){
+
+        return collect($this->identificadores)->unique()->values();
     }
 
 }

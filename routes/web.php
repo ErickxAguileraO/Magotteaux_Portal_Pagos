@@ -72,8 +72,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update/{id}', [CargaMasivaController::class, 'update'])->name('update');
         Route::get('delete/{id}', [CargaMasivaController::class, 'delete'])->name('delete')->whereNumber('id');
         Route::get('download-excel', [CargaMasivaController::class, 'downloadExcel'])->name('download.excel');
-        Route::get('correo', [CargaMasivaController::class, 'sendEmail'])->name('send.email');
-
    });
 
      Route::group(['prefix' => 'cuenta', 'as' => 'cuenta.'], function () {

@@ -16,16 +16,16 @@ class NotificacionPago extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $correo;
+    public $logCarga;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(LogCarga $correo)
+    public function __construct(LogCarga $logCarga)
     {
-        $this->correo = $correo;
+        $this->logCarga = $logCarga;
     }
 
     /**
@@ -35,7 +35,7 @@ class NotificacionPago extends Mailable
      */
     public function build()
     {
-        $asunto = 'Carga masiva';
+        $asunto = 'Se ha generado un nuevo documento de pago en la plataforma de pago Magotteaux';
         return $this->view('emails.notificacion')->subject($asunto);
     }
 }
