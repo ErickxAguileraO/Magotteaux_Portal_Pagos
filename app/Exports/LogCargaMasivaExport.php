@@ -35,7 +35,7 @@ class LogCargaMasivaExport implements WithMapping, WithHeadings, FromCollection,
         return [
             $LogCarga->log_id,
             $LogCarga->log_archivo,
-            $LogCarga->pagos_count,
+            $LogCarga->log_fila,
             $LogCarga->created_at->format('d-m-Y'),
             $LogCarga->created_at->format('H:i'),
             $LogCarga->usuario->usu_nombre.' '.$LogCarga->usuario->usu_apellido,

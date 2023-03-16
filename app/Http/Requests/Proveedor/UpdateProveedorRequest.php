@@ -25,7 +25,7 @@ class UpdateProveedorRequest extends FormRequest
     {
         return [
             'razon_social' => 'required|max:255',
-            'pro_identificacion' => 'max:255',
+            'pro_identificacion' => 'max:255|required',
             'pais' => 'required',
             'email_uno' => 'required|email',
             'email_dos' => 'max:255|different:email_uno',

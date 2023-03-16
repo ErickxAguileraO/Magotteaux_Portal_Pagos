@@ -45,12 +45,15 @@ class CargaMasivaController extends Controller
             ]);
             $import = new CargaMasivaImport($logCarga->log_id, $request->planta);
             Excel::import($import, request()->file('excel'));
-            dd($import->getRowCount());
+            // dd($import->getRowCount());
+            $filaCarga = LogCarga::findOrFail($logCarga->log_id);
+            $filaCarga->log_fila = $import->getRowCount();
+            $filaCarga->save();
 
             DB::commit();
             return redirect()->route('carga.index')->with(['message' => 'Excel cargado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             DB::rollBack();
             return redirect()->back()->with(['message' => 'Ocurrio un error al intentar cargar el excel', 'type' => 'error']);
         }

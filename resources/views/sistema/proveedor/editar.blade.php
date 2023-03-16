@@ -26,7 +26,7 @@
                             </div>
                             <div class="mb-3 col-sm-6 col-md-4">
                                 <label for="pro_identificacion" class="form-label">Identificación (RUT, DNI, etc)</label>
-                                <input tabindex="2" type="text" placeholder="Campo opcional" class="form-control" id="pro_identificacion" name="pro_identificacion" value="{{ old('razon_social', $proveedores->pro_identificacion) }}" >
+                                <input tabindex="2" type="text" class="form-control" id="pro_identificacion" name="pro_identificacion" value="{{ old('razon_social', $proveedores->pro_identificacion) }}" >
                                 @error('pro_identificacion')
                                     <span class="invalid-feedback badge alert-danger" role="alert">
                                         <strong>{{ $message }}</strong>

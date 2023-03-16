@@ -17,7 +17,7 @@ class CargaMasivaResource extends JsonResource
         return [
             'id' => $this->log_id,
             'nombre' => $this->log_archivo,
-            'fila' => $this->pagos_count,
+            'fila' => $this->log_fila,
             'usuario' => $this->usuario->usu_nombre.' '.$this->usuario->usu_apellido,
             'fecha_carga' => $this->created_at->format('d-m-Y'),
             'hora_carga' => $this->created_at->format('H:i'),
