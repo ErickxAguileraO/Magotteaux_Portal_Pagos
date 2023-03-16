@@ -37,8 +37,14 @@ class Proveedor extends Model
     /***********************************************************
      *  Eloquent relationships
      ************************************************************/
+
     public function pais()
     {
         return $this->belongsTo(Pais::class, 'pro_pais_id', 'pai_id');
+    }
+
+    public function correos()
+    {
+        return $this->hasMany(Correo::class, 'cor_proveedor_id');
     }
 }

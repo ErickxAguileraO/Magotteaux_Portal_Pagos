@@ -63,11 +63,11 @@
             <p>
 
                 Estimados,<br>
-                        Con fecha {{ $carga->car_fecha_salida->format('d-m-Y / H:i')}} Se ha realizado una Carga Masiva con información<br>
+                        Con fecha {{ $logCarga->created_at->format('d-m-Y / H:i')}} Se ha realizado una Carga Masiva con información<br>
                         que actualiza sus Pagos.
                 <br><br>
                 Para más información en curso, presionar el siguiente enlace:<br>
-                <a href="{{ route('detalle.carga.correo') }}" class="link">Enlace</a>
+                <a href="{{ route('carga.index') }}" class="link">Enlace</a>
 
             </p>
             <p>
