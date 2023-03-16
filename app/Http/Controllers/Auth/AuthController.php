@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Auth\AuthenticateRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -45,11 +44,11 @@ class AuthController extends Controller
             'password' => $request->post('password')
         ]);
 
-        if (!$isValid) return redirect()->back()->with(['message' => 'Correo o contraseña incorrecto', 'type' => 'error'])->withInput();
+        if (!$isValid) return redirect()->back()->with(['message' => 'Correo o contraseña incorrecta', 'type' => 'error'])->withInput();
 
         if (auth()->user()->hasRole('Administrador')) return redirect()->route('usuario.index');
-        if (auth()->user()->hasRole('Tesorero')) return redirect()->route('carga.index');
-        if (auth()->user()->hasRole(['Finanza', 'Gerencia', 'Proveedor'])) return redirect()->route('pago.index');
+        if (auth()->user()->hasRole(['Tesorero'])) return redirect()->route('carga.index');
+        if (auth()->user()->hasRole(['Finanza', 'Gerente', 'Proveedor'])) return redirect()->route('pago.index');
     }
 
     public function logout()

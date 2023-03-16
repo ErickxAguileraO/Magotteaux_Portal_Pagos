@@ -93,6 +93,11 @@ class User extends Authenticatable
         return $this->belongsTo(Planta::class, 'usu_planta_id', 'pla_id');
     }
 
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class, 'usu_proveedor_id', 'pro_id');
+    }
+
     /***********************************************************
      *  Auxiliary functions
      ************************************************************/

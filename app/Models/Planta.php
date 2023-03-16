@@ -36,6 +36,15 @@ class Planta extends Model
     {
         return $query->where('pla_estado', 1);
     }
+    
+    public function scopeValidateFinanzaRole($query)
+    {
+        $isFinanza = auth()->user()->hasRole('Finanza');
+
+        return $query->when($isFinanza, function ($query) {
+            $query->where('pla_id', auth()->user()->usu_planta_id);
+        });
+    }
 
 
     /***********************************************************
