@@ -74,7 +74,7 @@ class CargaMasivaController extends Controller
             return redirect()->route('carga.index')->with(['message' => 'Excel cargado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with(['message' => 'Ocurrio un error al intentar cargar el excel', 'type' => 'error']);
+            return redirect()->back()->with(['message' => '"No se pudo realizar la carga de los datos por que el Archivo presenta problemas de Formato', 'type' => 'error']);
         }
 
     }
