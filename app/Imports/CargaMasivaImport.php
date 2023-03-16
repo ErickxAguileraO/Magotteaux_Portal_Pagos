@@ -16,6 +16,7 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 
     private $id_carga;
     private $planta;
+    private $rows = 0;
 
     public function __construct(int $id_carga, int $planta)
     {
@@ -30,6 +31,7 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
      */
     public function model(array $row)
     {
+        ++$this->rows;
         $count = Pago::where('pag_numero_documento',$row['no_documento'])->count();
         if($count > 0){
             return null;
@@ -55,5 +57,8 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
         ]);
     }
 
+    public function getRowCount(){
+        return $this->rows;
+    }
 
 }
