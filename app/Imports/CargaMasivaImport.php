@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
+class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, WithValidation
 {
 
     private $id_carga;
@@ -61,19 +61,20 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows
         ]);
     }
 
-    // public function rules(): array
-    // {
-    //     return [
-    //         '*.cuenta' => ['required'],
-    //         '*.no_identfis1' => ['required'],
-    //         '*.no_identfis1' => ['integer'],
-    //         '*.no_identfis1' => ['integer'],
-    //         '*.no_identfis1' => ['integer'],
-    //         '*.no_identfis1' => ['integer'],
-    //         '*.no_identfis1' => ['integer'],
-    //         '*.no_identfis1' => ['integer'],
-    //     ];
-    // }
+    public function rules(): array
+    {
+        return [
+            '*.razon_social' => ['required'],
+            '*.cuenta' => ['required','numeric'],
+            '*.no_identfis1' => ['required'],
+            '*.referencia' => ['required','numeric'],
+            '*.clase_de_documento' => ['required'],
+            '*.no_documento' => ['required','numeric'],
+            '*.importe_en_moneda_doc' => ['numeric'],
+            '*.demora_tras_vencimiento_neto' => ['numeric'],
+            '*.pago' => ['numeric'],
+        ];
+    }
 
     public function getRowCount(){
         return $this->rows;
