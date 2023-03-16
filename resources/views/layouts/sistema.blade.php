@@ -36,6 +36,7 @@
             </ul>
             <div class="dropdown text-end"> <a href="#" class="d-block nav-link text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->usu_email }}</a>
                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="{{ route('cuenta.edit') }}"><img src="{{ asset('imagenes/sitio/pagos.png') }}" width="16" height="16" alt="Consulta de pagos" /> Mi perfil</a></li>
                   @if (auth()->user()->hasRole('Tesorero'))
                      <li>
                         <a class="dropdown-item" href="{{ route('carga.index') }}">

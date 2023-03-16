@@ -15,7 +15,7 @@
                         <div class="row justify-content-md-end">
                             <div class="mb-3 mb-md-0 col-sm-6 pl">
                                 <select id="planta" name="planta" style="width: 100%;">
-                                    <option value="">Seleccione país</option>
+                                    <option value="">Seleccione planta</option>
                                     @foreach ($plantas as $planta)
                                         @continue($planta->pla_estado == 0)
                                         @php
@@ -31,7 +31,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3 mb-md-0 col-sm-6 pl">
-                                <input type="file" id="excel" name="excel" class="form-control" style="width: 100%;" accept=".xlsx, .xls">
+                                <input type="file" id="excel" name="excel" class="form-control" style="height: 44px" accept=".xlsx, .xls">
                                 @error('excel')
                                     <span class="invalid-feedback badge alert-danger" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,18 +48,6 @@
             </div>
         </form>
 
-
-        <div class="card-body collapse" id="collapseExample">
-            <div class=" ">
-                <h2 class="h1">Subir archivo</h2>
-                <div class="tex-center">
-                    <label for="file_arch" class="text-file"> Subir certificado de calidad <img src="/public/imagenes/sitio/i-file.svg" alt="">
-                        <input id="file_arch" type="file" name="certificado_calidad" class="file-simple" accept=".pdf">
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="card mb-3">
         <div class="card-body">
             <div class="row">
