@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -74,6 +75,8 @@ class CargaMasivaController extends Controller
             return redirect()->route('carga.index')->with(['message' => 'Excel cargado correctamente', 'type' => 'success']);
         } catch (\Throwable $th) {
             DB::rollBack();
+            Log::info('mensaje error', ['error' => $th]);
+            dd($th);
             return redirect()->back()->with(['message' => '"No se pudo realizar la carga de los datos por que el Archivo presenta problemas de Formato', 'type' => 'error']);
         }
 
