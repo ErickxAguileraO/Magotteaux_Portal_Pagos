@@ -45,7 +45,7 @@ class PagosExport extends StringValueBinder  implements WithMapping, WithHeading
             $pagos->pag_texto,
             $pagos->pag_asignacion,
             $pagos->pag_demora_vencimiento,
-            $pagos->pag_forma_pago,
+            $pagos->tipo->tip_nombre,
             $pagos->pag_estado,
             $pagos->planta->pla_nombre
         ];
