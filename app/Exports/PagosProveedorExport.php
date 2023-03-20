@@ -38,7 +38,7 @@ class PagosProveedorExport extends StringValueBinder  implements WithMapping, Wi
             $pagos->pag_fecha_documento,
             $pagos->pag_vencimiento_neto,
             $pagos->pag_moneda_documento,
-            $pagos->pag_forma_pago,
+            $pagos->tipo->tip_nombre,
             $pagos->pag_estado,
         ];
     }

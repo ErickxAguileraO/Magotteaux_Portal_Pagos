@@ -39,7 +39,7 @@ class PagoController extends Controller
             $isProveedor = auth()->user()->hasRole('Proveedor');
 
             $pagos = Pago::withFilters()
-                ->with('planta:pla_id,pla_nombre')
+                ->with('planta:pla_id,pla_nombre', 'tipo')
                 ->when($id, function ($query, $id) {
                     $query->where('pag_id', $id);
                 })
