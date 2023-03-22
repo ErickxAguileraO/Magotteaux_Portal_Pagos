@@ -24,7 +24,7 @@ Route::group(['as' => 'web.'], function () {
      Route::middleware(['guest'])->group(function () {
           Route::get('recuperar-contrasena', [AuthController::class, 'restorePassword'])->name('restore.password');
           Route::post('store', [AuthController::class, 'storePassword'])->name('store.password');
-          Route::get('', [AuthController::class, 'login'])->name('login');
+          Route::get('', [AuthController::class, 'login'])->name('home');
           Route::get('login', [AuthController::class, 'login'])->name('login');
           Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
      });
