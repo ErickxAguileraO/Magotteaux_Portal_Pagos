@@ -3,6 +3,16 @@
 @section('js_personalizado')
 @endsection
 @section('content')
+<div class="p-4">
+    <div class="container-fluid">
+       <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+             <li class="breadcrumb-item">Usted está en </li>
+             <li class="breadcrumb-item active" aria-current="page">Editar mi perfil</li>
+          </ol>
+       </nav>
+    </div>
+ </div>
     <div class="card mb-4">
         <form method="POST" action="{{ route('cuenta.update') }}" class="formulario-cambios-contraseña">
             @csrf

@@ -3,6 +3,16 @@
 {{-- @section('js_personalizado') --}}
 {{-- @endsection --}}
 @section('content')
+<div class="p-4">
+    <div class="container-fluid">
+       <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+             <li class="breadcrumb-item">Usted está en </li>
+             <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
+          </ol>
+       </nav>
+    </div>
+ </div>
 <div class="row">
   <div class="mb-3 mb-md-0 col-md-3 col-lg-2">
     <div class="card">

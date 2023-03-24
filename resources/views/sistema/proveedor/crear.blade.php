@@ -5,6 +5,16 @@
     <script src="{{ asset('js/jquery/select2-4.0.7/dist/js/select2.js') }}"></script>
 @endsection
 @section('content')
+<div class="p-4">
+    <div class="container-fluid">
+       <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+             <li class="breadcrumb-item">Usted está en </li>
+             <li class="breadcrumb-item active" aria-current="page">Crear proveedor</li>
+          </ol>
+       </nav>
+    </div>
+ </div>
     <div class="card mb-4">
         <div class="card-body">
             <div class="mb-4">

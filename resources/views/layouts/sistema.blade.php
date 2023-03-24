@@ -60,7 +60,7 @@
       </div>
    </header>
 
-   <div class="p-4">
+   {{-- <div class="p-4">
       <div class="container-fluid">
          <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
@@ -69,7 +69,7 @@
             </ol>
          </nav>
       </div>
-   </div>
+   </div> --}}
    <div class="px-4">
       <div class="content-body">
          <!-- Dashboard Ecommerce Starts -->
