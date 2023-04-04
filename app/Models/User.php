@@ -37,6 +37,7 @@ class User extends Authenticatable
         'usu_identificacion',
         'usu_celular',
         'usu_email',
+        'usu_email_dos',
         'usu_estado',
         'usu_password',
         'usu_planta_id',

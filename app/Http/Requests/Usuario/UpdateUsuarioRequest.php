@@ -29,6 +29,7 @@ class UpdateUsuarioRequest extends FormRequest
             'apellido' => ['required', 'max:255'],
             'celular' => ['required', 'max:255'],
             'email' => ['required', 'max:255', 'email:filter', Rule::unique('usuarios', 'usu_email')->ignore($this->id, 'usu_id')->whereNull('deleted_at')],
+            'email_dos' => 'max:255|different:email',
             'contrasena' => ['nullable', 'max:255', 'min:8'],
             'identificacion' => ['required', 'max:255'],
             'tipo' => ['required', 'in:1,2,3,4,5'],

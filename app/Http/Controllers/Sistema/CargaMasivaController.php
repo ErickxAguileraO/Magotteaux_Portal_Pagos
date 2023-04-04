@@ -11,6 +11,7 @@ use App\Mail\Notificacion\NotificacionPago;
 use App\Models\LogCarga;
 use App\Models\Planta;
 use App\Models\Proveedor;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -50,19 +51,28 @@ class CargaMasivaController extends Controller
 
             $identificadores = $import->getIndentificadores();
 
-            $proveedores = Proveedor::with('correos')->whereIn('pro_identificacion', $identificadores)->get();
+            //$proveedores = Proveedor::with('correos')->whereIn('pro_identificacion', $identificadores)->get();
+            $proveedores = User::whereHas('proveedor', function ($query) use ($identificadores) {
+                $query->whereIn('pro_identificacion', $identificadores);
+            })
+            ->select('usu_email', 'usu_email_dos')
+            ->get();
 
             $correoUno = [];
             $correoDos = [];
-
             foreach ($proveedores as $proveedor) {
-                $correoUno[] = $proveedor->correos[0]->cor_email;
-                $correoDos[] = $proveedor->correos[1]->cor_email ?? null;
+                // $correoUno[] = $proveedor->correos[0]->cor_email;
+                // $correoDos[] = $proveedor->correos[1]->cor_email ?? null;
+                if (!$proveedor->usu_email_dos == '') {
+                    $correoUno[] = $proveedor->usu_email;
+                    $correoDos[] = $proveedor->usu_email_dos;
+                } else {
+                    $correoUno[] = $proveedor->usu_email;
+                }
+
             }
 
-            $correoDos = array_filter($correoDos);
-
-            Mail::to($correoUno)->cc($correoDos)->send((new NotificacionPago($logCarga)));
+           Mail::to($correoUno)->cc($correoDos)->send((new NotificacionPago($logCarga)));
 
             DB::commit();
             return redirect()->route('carga.index')->with(['message' => 'Excel cargado correctamente', 'type' => 'success']);

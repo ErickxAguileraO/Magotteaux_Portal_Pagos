@@ -35,17 +35,21 @@ window.addEventListener('load', () => {
 
         const content_planta = document.querySelector('.content-planta');
         const content_proveedor = document.querySelector('.content-proveedor');
+        const content_email_dos = document.querySelector('.content-email_dos');
 
         if (value == TIPO_FINANZA) {
             content_planta.classList.remove('d-none');
             content_proveedor.classList.add('d-none');
-            
+            content_email_dos.classList.add('d-none');
+
         } else if (value == TIPO_PROVEEDOR) {
             content_planta.classList.add('d-none');
             content_proveedor.classList.remove('d-none');
+            content_email_dos.classList.remove('d-none');
         } else {
             content_planta.classList.add('d-none');
             content_proveedor.classList.add('d-none');
+            content_email_dos.classList.add('d-none');
         }
     });
 });
