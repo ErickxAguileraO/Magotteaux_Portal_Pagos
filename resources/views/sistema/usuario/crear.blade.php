@@ -56,6 +56,18 @@
                            </span>
                         @enderror
                      </div>
+                     @php
+                        $class = old('tipo') == 3 ? '' : 'd-none';
+                     @endphp
+                     <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-email_dos">
+                        <label for="email_dos" class="form-label">Email 2</label>
+                        <input type="text" class="form-control" placeholder="Campo opcional" id="email_dos" name="email_dos" value="{{ old('email_dos') }}">
+                        @error('email_dos')
+                            <span class="invalid-feedback badge alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                      <div class="mb-3 col-sm-6 col-md-4">
                         <label for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="password" name="contrasena" value="{{ old('contrasena') }}">

@@ -63,7 +63,7 @@
                             </div>
                             {{-- @dd($correos) --}}
 
-                            <div class="mb-3 col-sm-6 col-md-4">
+                            {{-- <div class="mb-3 col-sm-6 col-md-4">
                                 <label for="email_uno" class="form-label">Email 1</label>
                                 <input type="text" class="form-control" id="email_uno" name="email_uno" value="{{ old('email_uno', $correos[0]->cor_email) }}">
                                 @error('email_uno')
@@ -92,11 +92,11 @@
                                     </span>
                                 @enderror
                             </div>
-                            @endif
+                            @endif --}}
 
                             <div class="mb-3 col-sm-6 col-md-4">
                                 <label for="telefono_contacto" class="form-label">Teléfono de contacto</label>
-                                <input type="text" class="form-control" id="telefono_contacto" name="telefono_contacto" value="{{ old('telefono_contacto', $proveedores->pro_telefono) }}">
+                                <input type="number" class="form-control" id="telefono_contacto" name="telefono_contacto" value="{{ old('telefono_contacto', $proveedores->pro_telefono) }}">
                                 @error('telefono_contacto')
                                     <span class="invalid-feedback badge alert-danger" role="alert">
                                         <strong>{{ $message }}</strong>
