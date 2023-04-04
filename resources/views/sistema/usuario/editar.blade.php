@@ -56,7 +56,10 @@
                            </span>
                         @enderror
                      </div>
-                     <div class="mb-3 col-sm-6 col-md-4">
+                     @php
+                        $class = old('tipo', $usuario->getRoleId()) == 3 ? '' : 'd-none';
+                     @endphp
+                     <div class="mb-3 col-sm-6 col-md-4 {{ $class }} content-email_dos">
                         <label for="email_dos" class="form-label">Email 2</label>
                         <input type="text" class="form-control" placeholder="Campo opcional" id="email_dos" name="email_dos" value="{{ old('email', $usuario->usu_email_dos) }}">
                         @error('email_dos')
