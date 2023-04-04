@@ -6,17 +6,20 @@ use App\Exports\PagosExport;
 use App\Exports\PagosProveedorExport;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PagoResource;
+use App\Models\LogCarga;
 use App\Models\Pago;
 use App\Models\Planta;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PagoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $plantas = Planta::active()->validateFinanzaRole()->get();
+        $logCarga = LogCarga::latest()->first();
 
-        return view('sistema.pago.index', compact('plantas'));
+        return view('sistema.pago.index', compact('plantas','logCarga'));
     }
 
     public function show(int $id)

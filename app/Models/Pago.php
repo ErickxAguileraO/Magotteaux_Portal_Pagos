@@ -32,6 +32,7 @@ class Pago extends Model
         'pag_estado',
         'pag_planta_id',
         'pag_log_carga_id',
+        'created_at',
     ];
 
 
@@ -45,9 +46,9 @@ class Pago extends Model
         $id_planta = auth()->user()->usu_planta_id;
 
         return $query->when(request('inicio'), function ($query, $inicio) {
-            $query->where('pag_fecha_documento', '>=', $inicio);
+            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') >= ?", [$inicio]);
         })->when(request('termino'), function ($query, $termino) {
-            $query->where('pag_vencimiento_neto', '<=', $termino);
+            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') <= ?", [$termino]);
         })->when((!$proveedor && !$id_planta) && request('planta'), function ($query) {
             $query->where('pag_planta_id', request('planta'));
         })->when($proveedor, function ($query, $proveedor) {
@@ -81,5 +82,10 @@ class Pago extends Model
     public function tipo()
     {
         return $this->belongsTo(TipoPago::class, 'pag_tipo_pago_id');
+    }
+
+    public function logCarga()
+    {
+        return $this->belongsTo(LogCarga::class, 'pag_log_carga_id','log_id');
     }
 }
