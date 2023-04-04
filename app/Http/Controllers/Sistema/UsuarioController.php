@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\CreateUsuarioRequest;
 use App\Http\Requests\Usuario\UpdateUsuarioRequest;
 use App\Http\Resources\UsuarioResource;
+use App\Mail\Usuario\CuentaCreada;
 use App\Models\Planta;
 use App\Models\Proveedor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -61,7 +63,7 @@ class UsuarioController extends Controller
 
             $usuario->assignRole($rol->name);
 
-            // Mail::to($usuario->usu_email)->send((new CuentaCreada($usuario, $request->post('contrasena')))->afterCommit());
+            Mail::to($usuario->usu_email)->send((new CuentaCreada($usuario, $request->post('contrasena')))->afterCommit());
 
             DB::commit();
 
