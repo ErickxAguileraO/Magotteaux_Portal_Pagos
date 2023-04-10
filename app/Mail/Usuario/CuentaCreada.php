@@ -33,6 +33,6 @@ class CuentaCreada extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.cuenta-creada')->subject('Datos de acceso a plataforma de control de carga Magotteaux portal de pago');
+        return $this->view('emails.cuenta-creada')->subject('Datos de acceso Magotteaux portal de pago');
     }
 }
