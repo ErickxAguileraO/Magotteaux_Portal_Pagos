@@ -62,7 +62,7 @@
       <div class="txt">
          <p>Estimado {{ $usuario->usu_nombre }},</p>
          <p>
-            Se le ha otorgado acceso a la plataforma de control de carga Magotteaux portal de pago. Para acceder
+            Se le ha otorgado acceso a la plataforma portal de pago. Para acceder
             debe ingresar al siguiente enlace utilizando la contraseña asignada:
          </p>
          <p>Contraseña: {{ $contrasena }}</p>
