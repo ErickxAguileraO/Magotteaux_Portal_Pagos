@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LogCarga\CreateLogCargaRequest;
 use App\Http\Resources\CargaMasivaResource;
 use App\Imports\CargaMasivaImport;
+use App\Mail\Notificacion\CambioEstado;
 use App\Mail\Notificacion\NotificacionPago;
 use App\Models\LogCarga;
 use App\Models\Planta;
@@ -57,12 +58,11 @@ class CargaMasivaController extends Controller
             })
             ->select('usu_email', 'usu_email_dos')
             ->get();
-
+            $cambioEstado = $import->getCambioEstado();
+            $proveedorCambioEstado = $import->getProveedor();
             $correoUno = [];
             $correoDos = [];
             foreach ($proveedores as $proveedor) {
-                // $correoUno[] = $proveedor->correos[0]->cor_email;
-                // $correoDos[] = $proveedor->correos[1]->cor_email ?? null;
                 if (!$proveedor->usu_email_dos == '') {
                     $correoUno[] = $proveedor->usu_email;
                     $correoDos[] = $proveedor->usu_email_dos;
@@ -71,8 +71,30 @@ class CargaMasivaController extends Controller
                 }
 
             }
+            if (!empty($cambioEstado)) {
 
-           Mail::to($correoUno)->cc($correoDos)->send((new NotificacionPago($logCarga)));
+                $proveedores = User::whereHas('proveedor', function ($query) use ($proveedorCambioEstado) {
+                    $query->whereIn('pro_identificacion', $proveedorCambioEstado);
+                })
+                ->select('usu_email', 'usu_email_dos','usu_proveedor_id')
+                ->get();
+                $usuarios = User::whereNotNull('usu_proveedor_id')->get();
+                //dd('entre al cambio de estado',$cambioEstado,$proveedorCambioEstado,$usuarios);
+                $correoUnoEstado = [];
+                $correoDosEstado  = [];
+                foreach ($proveedores as $proveedor) {
+                    if (!$proveedor->usu_email_dos == '') {
+                        $correoUnoEstado [] = $proveedor->usu_email;
+                        $correoDosEstado [] = $proveedor->usu_email_dos;
+                    } else {
+                        $correoUnoEstado [] = $proveedor->usu_email;
+                    }
+                }
+                Mail::to($correoUnoEstado )->cc($correoDosEstado )->send((new CambioEstado($logCarga,$cambioEstado,$usuarios,$proveedorCambioEstado)));
+            }
+
+            Mail::to($correoUno)->cc($correoDos)->send((new NotificacionPago($logCarga,$cambioEstado)));
+
 
             DB::commit();
             return redirect()->route('carga.index')->with(['message' => 'Excel cargado correctamente', 'type' => 'success']);

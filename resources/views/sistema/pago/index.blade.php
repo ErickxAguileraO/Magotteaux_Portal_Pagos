@@ -61,7 +61,11 @@
                <h1 class="mb-0">Detalle</h1>
             </div>
             <div class="mb-3 mb-md-0 col-md-7">
-                <h6 class="mb-0">Última carga masiva: {{$logCarga->created_at->format('d-m-Y / H:i')}}</h1>
+                @if (!isset($logCarga))
+                <h6 class="mb-0">Última carga masiva: No hay cargas masivas</h1>
+                @else
+                <h6 class="mb-0">Última carga masiva: {{$logCarga->created_at->format('d-m-Y / H:i')}} | Planta: {{$pago->planta->pla_nombre}}</h1>
+                @endif
              </div>
             <div class="col-md-5 mb-3 text-end">
                <a class="btn btn-success btn-download-excel waves-effect waves-float waves-light" data-base-url="{{ route('pago.download.excel') }}" href="{{ route('pago.download.excel') }}">Descargar Excel <i class="fas fa-file-excel fa-fw"></i></a>

@@ -12,22 +12,26 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificacionPago extends Mailable
+class CambioEstado extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $logCarga;
     public $cambioEstado;
+    public $proveedores;
+    public $proveedorCambioEstado;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(LogCarga $logCarga, $cambioEstado)
+    public function __construct(LogCarga $logCarga, $cambioEstado,$proveedores,$proveedorCambioEstado)
     {
         $this->logCarga = $logCarga;
         $this->cambioEstado = $cambioEstado;
+        $this->proveedores = $proveedores;
+        $this->proveedorCambioEstado = $proveedorCambioEstado;
     }
 
     /**
@@ -37,7 +41,7 @@ class NotificacionPago extends Mailable
      */
     public function build()
     {
-        $asunto = 'Se ha generado un nuevo documento de pago en la plataforma de pago Magotteaux';
-        return $this->view('emails.notificacion')->subject($asunto);
+        $asunto = 'Se ha generado un cambio de estado de pago';
+        return $this->view('emails.cambio-estado')->subject($asunto);
     }
 }

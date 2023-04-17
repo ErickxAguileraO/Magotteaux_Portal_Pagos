@@ -63,9 +63,9 @@
             <p>
 
                 Estimados,<br>
-                        Con fecha {{ $logCarga->created_at->format('d-m-Y / H:i')}} Se ha realizado una Carga Masiva con información nueva.<br>
+                        Con fecha {{ $logCarga->created_at->format('d-m-Y / H:i')}}, se ha realizado un cambio de estado que actualizan algunos pagos.
                 <br><br>
-                Para más información en curso, presionar el siguiente enlace:<br>
+                Para más información, presionar el siguiente enlace:<br>
                 <a href="{{ route('carga.index') }}" class="link">Enlace</a>
 
             </p>
