@@ -4,8 +4,10 @@ namespace App\Imports;
 
 use App\Models\LogCarga;
 use App\Models\Pago;
+use App\Models\Proveedor;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -18,6 +20,9 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
     private $planta;
     private $rows = 0;
     private $identificadores = [];
+    private $identificadoresModificados = [];
+    private $cambioEstado = [];
+    private $factura = [];
 
     public function __construct(int $id_carga, int $planta)
     {
@@ -33,8 +38,23 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
     public function model(array $row)
     {
         ++$this->rows;
-        $count = Pago::where('pag_numero_documento',$row['no_documento'])->count();
-        if($count > 0){
+        // $count = Pago::where('pag_numero_documento',$row['no_documento'])->count();
+        // if($count > 0){
+        //     return null;
+        // }
+        $existingPago = Pago::where('pag_numero_documento', $row['no_documento'])->first();
+
+        if ($existingPago) {
+            if ($existingPago->pag_estado === $row['estado']) {
+                return null;
+            }
+
+            $existingPago->update([
+                'pag_estado' => $row['estado'],
+            ]);
+            $this->cambioEstado[] = $row['estado'];
+            $this->factura[] = $row['no_documento'];
+            $this->identificadoresModificados[] = $row['no_identfis1'];
             return null;
         }
 
@@ -83,6 +103,31 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
     public function getIndentificadores(){
 
         return collect($this->identificadores)->unique()->values();
+    }
+
+    public function getCambioEstado(){
+        $finalEstado=[];
+        $this->cambioEstado;
+        $this->factura;
+        $c=0;
+        foreach ($this->cambioEstado as  $estado) {
+            $finalEstado[]=$this->factura[$c].' a '.$estado;
+            $c++;
+        }
+        return $finalEstado;
+    }
+
+    public function getProveedor(){
+        $identificaciones_encontradas = [];
+        $proveedores = Proveedor::whereIn('pro_identificacion', $this->identificadoresModificados)->get();
+
+        foreach ($proveedores as $proveedor) {
+            $identificacion = $proveedor->pro_identificacion;
+            if (!in_array($identificacion, $identificaciones_encontradas)) {
+                $identificaciones_encontradas[] = $identificacion;
+            }
+        }
+        return $identificaciones_encontradas;
     }
 
 }

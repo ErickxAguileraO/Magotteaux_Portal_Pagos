@@ -18,8 +18,9 @@ class PagoController extends Controller
     {
         $plantas = Planta::active()->validateFinanzaRole()->get();
         $logCarga = LogCarga::latest()->first();
+        $pago = Pago::latest()->first();
 
-        return view('sistema.pago.index', compact('plantas','logCarga'));
+        return view('sistema.pago.index', compact('plantas','logCarga','pago'));
     }
 
     public function show(int $id)
