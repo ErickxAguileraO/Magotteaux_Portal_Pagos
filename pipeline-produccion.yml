@@ -1,0 +1,19 @@
+trigger:
+- produccion
+
+variables:
+- group: credenciales
+
+steps:
+- script: |
+    rsync -auv -e 'sshpass -p "$(password_produccion)" ssh -o StrictHostKeyChecking=no' --chown=mteauxplataf:mteauxplataf  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@45.33.42.95:/home/mteauxplataf/public_html/
+  displayName: 'Rsync a servidor de produccion'
+
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'produccion'
+    runOptions: 'commands'
+    commands: |
+      cd /home/mteauxplataf/public_html/ && php artisan migrate --force
+    readyTimeout: '20000'
