@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\LogCarga;
 use App\Models\Pago;
 use App\Models\Proveedor;
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,11 +39,15 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
     public function model(array $row)
     {
         ++$this->rows;
-        // $count = Pago::where('pag_numero_documento',$row['no_documento'])->count();
-        // if($count > 0){
-        //     return null;
-        // }
+
         $existingPago = Pago::where('pag_numero_documento', $row['no_documento'])->first();
+        if ($existingPago !== null) {
+            $existingPago->update([
+                'pag_tipo_pago_id' => $row['pago'],
+                'pag_importe_moneda' => $row['importe_en_moneda_doc'],
+                'pag_moneda_documento' => $row['moneda_del_documento'],
+            ]);
+        }
 
         if ($existingPago) {
             if ($existingPago->pag_estado === $row['estado']) {
@@ -57,8 +62,9 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
             $this->identificadoresModificados[] = $row['no_identfis1'];
             return null;
         }
-
         $this->identificadores[] = $row['no_identfis1'];
+        $fecha1 = Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($row['fecha_de_documento'] - 2)->toDateString();
+        $fecha2 = Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($row['vencimiento_neto'] - 2)->toDateString();
 
         return new Pago([
             'pag_razon_social' => $row['razon_social'],
@@ -67,8 +73,8 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
             'pag_referencia' => $row['referencia'],
             'pag_clase_documento' => $row['clase_de_documento'],
             'pag_numero_documento' => $row['no_documento'],
-            'pag_fecha_documento' => date('Y-m-d', $row['fecha_de_documento']),
-            'pag_vencimiento_neto' =>  date('Y-m-d', $row['vencimiento_neto']),
+            'pag_fecha_documento' => $fecha1,
+            'pag_vencimiento_neto' => $fecha2,
             'pag_importe_moneda' => $row['importe_en_moneda_doc'],
             'pag_moneda_documento' => $row['moneda_del_documento'],
             'pag_texto' => $row['texto'],
@@ -92,7 +98,7 @@ class CargaMasivaImport implements ToModel, WithHeadingRow, SkipsEmptyRows, With
             '*.no_documento' => ['required','numeric'],
             '*.importe_en_moneda_doc' => ['numeric'],
             '*.demora_tras_vencimiento_neto' => ['numeric'],
-            '*.pago' => ['numeric'],
+            '*.pago' => ['numeric', 'in:1,2'],
         ];
     }
 
