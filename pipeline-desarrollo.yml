@@ -11,7 +11,7 @@ variables:
 
 steps:
 - script: |
-    rsync -auv -e 'sshpass -p "$(password_desarrollo)" ssh -o StrictHostKeyChecking=no' --chown=USUARIO:USUARIO  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@209.126.108.6:/home/wwwmagotteauxpor/public_html/
+    rsync -auv -e 'sshpass -p "$(password_desarrollo)" ssh -o StrictHostKeyChecking=no' --chown=wwwmagotteauxpor:wwwmagotteauxpor  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@209.126.108.6:/home/wwwmagotteauxpor/public_html/
   displayName: 'Rsync a servidor de desarrollo'
 
 
